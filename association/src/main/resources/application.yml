@@ -1,0 +1,47 @@
+
+spring:
+
+
+  datasource:
+    username: root
+    password: jianzi456123
+    #?serverTimezone=UTC解决时区的报错
+    url: jdbc:mysql://8.135.112.184:3306/College?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+    #druid 数据源专有配置
+    druid:
+      # 初始连接数
+      initial-size: 5
+      # 最小连接数
+      min-idle: 10
+      # 最大连接数
+      max-active: 20
+      # 获取连接超时时间
+      max-wait: 5000
+      # 连接有效性检测时间
+      time-between-eviction-runs-millis: 6000
+      # 连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      # 连接在池中最大生存的时间
+      max-evictable-idle-time-millis: 900000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 检测连接是否有效
+      validation-query: select 1
+# thymeleaf:
+#  cache: false
+#  suffix: .html
+
+
+
+
+server:
+  port: 8080
+
+mybatis:
+  mapper-locations: classpath*:Mapper/*.xml  #配置映射文件
+  type-aliases-package: com.association.emtity #配置实体类
