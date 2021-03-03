@@ -1,6 +1,10 @@
 package com.association.controller;
 import com.association.service.ILoginService;
+import com.association.service.IstudentService;
 import com.association.service.impl.ILoginServiceImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.ui.Model;
@@ -13,17 +17,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 
 @Controller
 @RequestMapping("user")
+@Api(value = "LoginController|适用于登录界面与登录跳转",description = "登录界面与登录跳转")
 public class LoginController {
     private ILoginServiceImpl login;
     @Autowired
     public void setlogin(ILoginServiceImpl login){
         this.login=login;
     }
+
+    /*private studentServiceImpl student;
+    @Autowired
+    public void setStudent(studentServiceImpl student){this.student=student;}*/
 //    返回首页
     @RequestMapping(value = "toLogin",method = {RequestMethod.POST,RequestMethod.GET})
     public String login(){
@@ -32,6 +42,7 @@ public class LoginController {
 
 //    注意对应form表单中的action
     @RequestMapping(value = "/login",method = {RequestMethod.POST,RequestMethod.GET})
+    @ApiOperation(value = "简单查询实现登录")
     public String login(HttpServletRequest request, HttpSession session, HashMap<String, Object> map, Model model)
     {
         double id = Double.parseDouble(request.getParameter("id"));
@@ -58,7 +69,7 @@ public class LoginController {
         user user = login.getuserbylogin(id,pw);
         try{
             login.shiroLoginByNameAndPassw(request.getParameter("id"),pw);
-            return "Index";
+            return "redirect:UserIndex/"+id;
         }catch (UnknownAccountException e){
             model.addAttribute("msg","用户名错误");
             return "shiroLogin";
@@ -66,5 +77,16 @@ public class LoginController {
             model.addAttribute("msg","密码错误");
             return "shiroLogin";
         }
+    }
+    @RequestMapping(value = "UserIndex/{id}",method = {RequestMethod.POST,RequestMethod.GET})
+    public String getUserName(@PathVariable("id") double id,HttpServletRequest request , HttpSession session, HttpServletResponse response, Model model){
+        System.out.println("***************  success!!  ****************");
+        model.addAttribute("username",login.getuserbyid(id).getUserName());
+        model.addAttribute("msg","成功获取");
+        return "Index";
+    }
+    @RequestMapping(value = "UserData",method = {RequestMethod.GET,RequestMethod.POST})
+    public user getUserData(){
+        return new user();
     }
 }

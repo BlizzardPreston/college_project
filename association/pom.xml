@@ -156,7 +156,17 @@
             <artifactId>nekohtml</artifactId>
             <version>1.9.22</version>
         </dependency>
-
+<!--Swagge-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.6.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -164,6 +174,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.3.4.RELEASE</version>
                 <configuration>
                     <excludes>
                         <exclude>

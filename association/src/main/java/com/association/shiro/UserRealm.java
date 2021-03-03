@@ -38,6 +38,8 @@ public class UserRealm extends AuthorizingRealm {
             return null;
 //            抛出UnknowAccountException异常
         }
+        System.out.println("**************认证成功*******************USER："+usertoken.getUsername());
         return new SimpleAuthenticationInfo("",user.getUserPassword(),"");
+
     }
 }

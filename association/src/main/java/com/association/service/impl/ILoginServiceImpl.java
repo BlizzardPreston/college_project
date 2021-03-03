@@ -24,6 +24,14 @@ public class ILoginServiceImpl implements ILoginService {
 
         return subject;
     }
+    //通过shiro获取用户信息
+    public user getUserByShiro(){
+        System.out.println(SecurityUtils.getSubject().getPrincipal());
+        return (user) SecurityUtils.getSubject().getPrincipal();
+    }
+    //通过直接查询获取用户信息
+
+
     @Override
     public user getuserbylogin(double id, String pw) {
         return loginmapper.getuserbylogin(id,pw);

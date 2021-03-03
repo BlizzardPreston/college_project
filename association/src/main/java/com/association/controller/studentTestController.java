@@ -4,6 +4,7 @@ import com.association.emtity.club;
 import com.association.emtity.student;
 import com.association.mapper.clubmapper;
 import com.association.mapper.studentmapper;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/studenttest")
+@Api(value = "学生查询测试页")
 public class studentTestController {
     @Autowired
     studentmapper student;

@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="login-box">
-    <form action="/user/shiroLogin">
+    <form action="/user/shiroLogin" method="post">
         <h1>Login</h1>
         <span style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></span>
         <div class="form">

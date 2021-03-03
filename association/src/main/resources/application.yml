@@ -1,7 +1,6 @@
 
 spring:
 
-
   datasource:
     username: root
     password: jianzi456123
