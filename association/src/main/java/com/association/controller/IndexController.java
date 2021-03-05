@@ -1,6 +1,6 @@
 package com.association.controller;
 
-import com.association.service.impl.ILoginServiceImpl;
+
 import org.apache.catalina.filters.ExpiresFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/Index")
 public class IndexController {
     private static Logger logger = LoggerFactory.getLogger(IndexController.class);
-    private ILoginServiceImpl login;
+
 
 
 }

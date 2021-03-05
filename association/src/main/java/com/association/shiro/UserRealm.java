@@ -1,7 +1,7 @@
 package com.association.shiro;
 
-import com.association.emtity.user;
-import com.association.service.impl.ILoginServiceImpl;
+import com.association.entity.User;
+import com.association.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -11,8 +11,10 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserRealm extends AuthorizingRealm {
+/*    @Autowired
+    private ILoginServiceImpl login;*/
     @Autowired
-    private ILoginServiceImpl login;
+    private UserService userService;
 //    授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -32,7 +34,7 @@ public class UserRealm extends AuthorizingRealm {
 
         UsernamePasswordToken usertoken = (UsernamePasswordToken)authenticationToken;
 
-        user user = login.getuserbyid(Double.valueOf(usertoken.getUsername()));
+        User user = userService.getUserById(Double.valueOf(usertoken.getUsername()));
 
         if (user==null){
             return null;

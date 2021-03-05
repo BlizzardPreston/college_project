@@ -5,5 +5,23 @@
     <select id="getStudentByid" resultType="com.association.entity.Student">
         select * from student where studentID=#{id}
     </select>
+    <select id="getAllStudent" resultType="com.association.entity.Student">
+        select * from student;
+    </select>
+    <select id="getStudentById" resultType="com.association.entity.Student" parameterType="double">
+        select * from student where studentID=#{id};
+    </select>
+    <select id="getStudentByName" resultType="com.association.entity.Student" parameterType="String">
+        select * from student where studentName=#{name};
+    </select>
+    <select id="getStudentByGrade" resultType="com.association.entity.Student" parameterType="int">
+        select * from student where studentGrade=#{grade};
+    </select>
+    <select id="getsStudentNameById" resultType="String" parameterType="double">
+        select studentName from student where studentID=#{id};
+    </select>
+    <select id="is2017" resultType="boolean">
+        select * from student where studentID=#{id} and studentGrade=2017
+    </select>
 
 </mapper>
