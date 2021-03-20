@@ -34,8 +34,9 @@ public class LoginController {
     @RequestMapping(value = "/login",method = {RequestMethod.POST,RequestMethod.GET})
     public String login(HttpServletRequest request, HttpSession session, HashMap<String, Object> map, Model model)
     {
-        double id = Double.parseDouble(request.getParameter("id"));
+        long id = Long.parseLong(request.getParameter("id"));
         String pw = request.getParameter("pw");
+//        request.getCookies().
         User user = login.getuserbylogin(id,pw);
 //        查不到则返回null
         session.setAttribute("user", user);
@@ -53,7 +54,7 @@ public class LoginController {
     @RequestMapping(value = "/shiroLogin",method = {RequestMethod.POST,RequestMethod.GET})
     public String shiroLogin(HttpServletRequest request, HttpSession session, HashMap<String, Object> map, Model model)
     {
-        double id = Double.parseDouble(request.getParameter("id"));
+        long id = Long.parseLong(request.getParameter("id"));
         String pw = request.getParameter("pw");
         User user = login.getuserbylogin(id,pw);
         try{

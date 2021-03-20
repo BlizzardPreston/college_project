@@ -31,9 +31,7 @@ spring:
       test-on-return: false
       # 检测连接是否有效
       validation-query: select 1
-# thymeleaf:
-#  cache: false
-#  suffix: .html
+
 
 
 

@@ -5,7 +5,7 @@
     <select id="getUserByLogin" resultType="com.association.entity.User">
         select * from user where studentID=#{id} and userPassword=#{pw}
     </select>
-    <select id="getUserById" resultType="com.association.entity.User">
+    <select id="getUserById"  parameterType="java.lang.Long" resultType="com.association.entity.User">
         select * from user where studentID=#{id}
     </select>
     <select id="getMapByID" resultType="com.association.entity.User">
@@ -21,6 +21,9 @@
     <select id="getUserByName" resultType="com.association.entity.User">
         select * from user where userName=#{name}
     </select>
-
+    <insert id="addUser" parameterType="com.association.entity.User">
+        insert into user(studentID,userName,userPassword,clubID,authID)
+        value(#{studentID},#{userName},#{userPassword},#{clubID},#{authID})
+    </insert>
 
 </mapper>

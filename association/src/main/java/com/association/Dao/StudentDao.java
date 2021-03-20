@@ -9,17 +9,19 @@ import java.util.List;
 
 @Repository
 public interface StudentDao {
-    Student getStudentByid(@Param(("studentID")) double id);
+    Student getStudentByid(@Param("studentID") long id);
     //    查询所有学生信息
     List<Student> getAllStudent();
 
-    Student getStudentById(double id);
+    Student getStudentById(long id);
 
     Student getStudentByName(String name);
 
     Student getStudentByGrade(int grade);
 
-    String getsStudentNameById(double id);
+    String getsStudentNameById(long id);
 
-    boolean is2017(@Param("studentID") double id);
+    boolean is2017(@Param("studentID") long id);
+    int addStudent(Student student);
+    boolean deleteById(@Param("studentID")long id);
 }

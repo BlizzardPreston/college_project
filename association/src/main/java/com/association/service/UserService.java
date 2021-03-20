@@ -28,17 +28,16 @@ public class UserService {
         return (User) SecurityUtils.getSubject().getPrincipal();
     }
     //通过直接查询获取用户信息
-    public User getUserById(double id){
+    public User getUserById(long id){
         return userDao.getUserById(id);
     }
-
     public User getUserByName(String name){
         return userDao.getUserByName(name);
     }
-    public User getuserbylogin(double id,String pw){
+    public User getuserbylogin(long id,String pw){
         return userDao.getUserByLogin(id,pw);
     }
-    public String chackUserAuthInfo(double id){
+    public String chackUserAuthInfo(long id){
         return userDao.chackUserAuthInfo(id);
     }
 }

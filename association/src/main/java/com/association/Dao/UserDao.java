@@ -6,9 +6,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserDao {
-    User getUserByLogin(@Param("studentID") double id, @Param("userPassword") String pw);
-    User getUserById(@Param("studentID") double id);
-    User getMapByID(@Param("studentID") double id);
-    String chackUserAuthInfo(@Param("studentID") double id);
+    User getUserByLogin(@Param("studentID") long id, @Param("userPassword") String pw);
+    User getUserById(@Param("studentID") long id);
+    User getMapByID(@Param("studentID") long id);
+    String chackUserAuthInfo(@Param("studentID") long id);
     User getUserByName(@Param("userName")String name);
+    int addUser(User user);
 }

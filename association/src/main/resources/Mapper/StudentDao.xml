@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.association.Dao.StudentDao">
-    <select id="getStudentByid" resultType="com.association.entity.Student">
+    <select id="getStudentByid"  parameterType="java.lang.Long" resultType="com.association.entity.Student">
         select * from student where studentID=#{id}
     </select>
     <select id="getAllStudent" resultType="com.association.entity.Student">
         select * from student;
     </select>
-    <select id="getStudentById" resultType="com.association.entity.Student" parameterType="double">
+    <select id="getStudentById" resultType="com.association.entity.Student"  parameterType="java.lang.Long">
         select * from student where studentID=#{id};
     </select>
     <select id="getStudentByName" resultType="com.association.entity.Student" parameterType="String">
@@ -17,11 +17,17 @@
     <select id="getStudentByGrade" resultType="com.association.entity.Student" parameterType="int">
         select * from student where studentGrade=#{grade};
     </select>
-    <select id="getsStudentNameById" resultType="String" parameterType="double">
+    <select id="getsStudentNameById" resultType="String" parameterType="long">
         select studentName from student where studentID=#{id};
     </select>
     <select id="is2017" resultType="boolean">
         select * from student where studentID=#{id} and studentGrade=2017
     </select>
-
+    <insert id="addStudent" parameterType="com.association.entity.Student">
+        insert into student(studentID,studentName,studentMajor,studentGrade)
+        value (#{studentID},#{studentName},#{studentMajor},#{studentGrade})
+    </insert>
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from student where studentID=#{id}
+    </delete>
 </mapper>

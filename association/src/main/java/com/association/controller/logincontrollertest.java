@@ -21,19 +21,19 @@ public class logincontrollertest {
     private UserService login;
 
     @GetMapping("testmapperlogin1/{id}/{pw}")
-    public User getuserbylogin(@PathVariable("id") double id, @PathVariable("pw") String pw){
+    public User getuserbylogin(@PathVariable("id") long id, @PathVariable("pw") String pw){
         return login.getuserbylogin(id,pw);
 }
     @GetMapping("testmapperlogin2/{id}")
-    public User getuserbyid(@PathVariable("id") double id){
+    public User getuserbyid(@PathVariable("id") long id){
         return login.getUserById(id);
     }
     @GetMapping("chackUserINFO/{id}")
-    public String chackUserAuthInfo(@PathVariable("id")double id){
+    public String chackUserAuthInfo(@PathVariable("id")long id){
         return login.chackUserAuthInfo(id);
     }
     @RequestMapping("testResult/{id}")
-    public Result getuserbyid2(@PathVariable("id") double id){
+    public Result getuserbyid2(@PathVariable("id") long id){
         return Result.success(login.getUserById(id));
     }
 }
