@@ -20,6 +20,8 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
+<!--    要放前面！-->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -697,7 +699,7 @@
         <!--mini聊天窗口结束-->
     </div>
 
-    <script>
+    <script type="text/javascript">
         $(document).ready(function (){
             $.ajax({
                 type: "POST",
@@ -712,7 +714,7 @@
                     alert("请求出错");
                 }
             })
-        }
+        })
     </script>
     <!-- 全局js -->
     <script src="/js/jquery.min.js"></script>
