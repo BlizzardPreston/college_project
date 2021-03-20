@@ -59,7 +59,7 @@ public class LoginController {
         User user = login.getuserbylogin(id,pw);
         try{
             login.shiroLoginByNameAndPassw(request.getParameter("id"),pw);
-            return "Index";
+            return "index";
         }catch (UnknownAccountException e){
             model.addAttribute("msg","用户名错误");
             return "shiroLogin";

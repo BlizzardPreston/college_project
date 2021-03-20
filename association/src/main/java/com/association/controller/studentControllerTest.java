@@ -24,7 +24,7 @@ public class studentControllerTest {
     public List<Student> getAllStudent() {
         return  studentService.getAllStudent();
     }
-    Student s1=new Student(18251108118l,"陈添加","17金融",2018);
+    Student s1=new Student(18251108118l,"陈添加","17金融",2018,"男");
     @RequestMapping("addStudent")
     public List<Student> addStudentAndShow(){
         studentService.addStudent(s1);
