@@ -34,4 +34,12 @@ public class StudentService {
             return true;
         }else return false;
     }
+//    把学生从社团删除，相当于把学生表的clubID改为0
+    public boolean deleteClubByID(long id){
+        return studentDao.updataStudentClubID(id,studentDao.getsStudentNameById(id),0);
+    }
+    public boolean addClubMenber(long id,String name ,String work,int cid){
+        return studentDao.addClubMenber(id,name,work,cid);
+    }
+
 }

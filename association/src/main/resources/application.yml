@@ -1,5 +1,14 @@
 
 spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    mode: HTML5
+
 
   datasource:
     username: root
@@ -37,7 +46,7 @@ spring:
 
 
 server:
-  port: 8080
+  port: 8888
 
 mybatis:
   mapper-locations: classpath*:Mapper/*.xml  #配置映射文件

@@ -9,5 +9,4 @@ public interface ClubDao {
     Club getClubById(@Param("clubID")int id);
     String getClubNameById(@Param("clubID")int id);
     int getClubNumById(@Param("clubID")int id);
-
 }

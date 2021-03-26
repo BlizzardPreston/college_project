@@ -24,4 +24,8 @@ public interface StudentDao {
     boolean is2017(@Param("studentID") long id);
     int addStudent(Student student);
     boolean deleteById(@Param("studentID")long id);
+    List<Student> getStudentListByClubID(@Param("clubID")int id);
+    boolean updataStudentClubID(@Param("studentID") long id,@Param("studentName") String name,@Param("clubID")int cid);
+    boolean addClubMenber(@Param("studentID") long id,@Param("studentName")String name,@Param("work") String work,@Param("clubID") int cid);
+
 }

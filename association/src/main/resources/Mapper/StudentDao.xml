@@ -30,4 +30,13 @@
     <delete id="deleteById" parameterType="java.lang.Long">
         delete from student where studentID=#{id}
     </delete>
+    <select id="getStudentListByClubID"  resultType="com.association.entity.Student">
+        select * from student where clubID=#{id}
+    </select>
+    <update id="updataStudentClubID">
+        update student set clubID=#{cid} where studentName=#{name} and studentID=#{id}
+    </update>
+    <update id="addClubMenber">
+        update student set clubID=#{cid},work=#{work} where studentName=#{name} and studentID=#{id}
+    </update>
 </mapper>

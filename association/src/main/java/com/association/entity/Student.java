@@ -23,5 +23,9 @@ public class Student implements Serializable {
     private int studentGrade;
     //    学生性别
     private String studentGender;
+    //社团号，0为无社团
+    private int clubID;
+    //work 社团职位
+    private String work;
 
 }
