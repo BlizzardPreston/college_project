@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Random;
 
 @CrossOrigin(origins = "*",maxAge = 3600)
@@ -58,20 +59,34 @@ public class clubController {
             return Result.success("失败");
         }
     }
-    @RequestMapping("addClubMenber")
+    @RequestMapping("addClubMenber1")
     @ResponseBody
-    public Result addClubMenber(@RequestParam("studentID") long id,@RequestParam("studentName")String name,@RequestParam("work") String work){
-        return Result.success();
+    public Result addClubMenber1(HttpServletRequest request){
+        System.out.println(request.getParameter("studentID"));
+        long id = Long.parseLong(request.getParameter("studentID"));
+        String name=request.getParameter("studentName");
+        String work=request.getParameter("work");
+        int cid=Integer.parseInt(request.getParameter("clubID"));
+        studentService.addClubMenber(id,name,work,cid);
+
+        return Result.success("添加用户成功！");
     }
+    @RequestMapping(value = "/addClubMenber2",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public Result addClubMenber2(@RequestParam long studentID,@RequestParam(value = "studentName",required = false) String name ,@RequestParam(value = "work",required = false) String work,@RequestParam(value = "clubID",required = false) int cid) {
+        System.out.println("addclubID:"+studentID+name+work+cid);
+        studentService.addClubMenber(studentID, name, work, cid);
 
-
+        return Result.success("添加用户成功！");
+    }
 
 
 
 
     //随机生成测试
     Random random = new Random();
-    int id= random.nextInt(4);
+//    int id= random.nextInt(4);
+    int id=3;
     @RequestMapping(value = "/getStudentListByRandom",method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
     public Result getStudentListByRandom(){
