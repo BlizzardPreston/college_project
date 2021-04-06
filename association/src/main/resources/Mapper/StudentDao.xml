@@ -39,4 +39,7 @@
     <update id="addClubMenber">
         update student set clubID=#{cid},work=#{work} where studentName=#{name} and studentID=#{id}
     </update>
+    <select id="getClubIDByStudentID" resultType="java.lang.Integer">
+        select clubID from student where studentID=#{sid}
+    </select>
 </mapper>

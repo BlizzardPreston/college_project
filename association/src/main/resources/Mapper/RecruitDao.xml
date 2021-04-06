@@ -2,9 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.association.Dao.RecruitDao">
-    <insert id="isWriteRecruit">
+    <insert id="isWriteRecruit" parameterType="com.association.entity.Recruit">
     insert into recruit
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="recruitID != null">
+                recruitID,
+            </if>
             <if test="studentID != null">
                 studentID,
             </if>
@@ -14,26 +17,53 @@
             <if test="text != null">
                 text,
             </if>
-            <if test="dateTime != null">
+            <if test="imgURL != null">
+                imgURL,
+            </if>
+            <if test="datetime != null">
                 dateTime,
+            </if>
+            <if test="isSend != null">
+                isSend,
+            </if>
+            <if test="mycomID != null">
+                mycomID,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="recruitID != null">
+                #{recruitID,jdbcType=INTEGER},
+            </if>
             <if test="studentID != null">
-               #{studentID}
+                #{studentID,jdbcType=BIGINT},
             </if>
             <if test="title != null">
-                #{title},
+                #{title,jdbcType=VARCHAR},
             </if>
             <if test="text != null">
-                #{text},
+                #{text,jdbcType=VARCHAR},
             </if>
-            <if test="dateTime != null">
-                #{dateTime},
+            <if test="imgURL != null">
+                #{imgURL,jdbcType=VARCHAR},
+            </if>
+            <if test="datetime != null">
+                #{datetime,jdbcType=DATE},
+            </if>
+            <if test="isSend != null">
+                #{isSend,jdbcType=INTEGER},
+            </if>
+            <if test="mycomID != null">
+                #{mycomID,jdbcType=BIGINT},
             </if>
         </trim>
     </insert>
     <select id="AllRecruitID" resultType="com.association.entity.Recruit">
         select * from recruit
     </select>
+    <select id="getRecruitByID" resultType="com.association.entity.Recruit">
+        select * from recruit where recruitID=#{rid}
+    </select>
+    <delete id="deleteRecruitByRID">
+        delete from recruit where recruitID=#{rid}
+    </delete>
 </mapper>

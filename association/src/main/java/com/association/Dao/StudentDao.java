@@ -27,5 +27,5 @@ public interface StudentDao {
     List<Student> getStudentListByClubID(@Param("clubID")int id);
     boolean updataStudentClubID(@Param("studentID") long id,@Param("studentName") String name,@Param("clubID")int cid);
     boolean addClubMenber(@Param("studentID") long id,@Param("studentName")String name,@Param("work") String work,@Param("clubID") int cid);
-
+    int getClubIDByStudentID(@Param("studentID")long sid);
 }

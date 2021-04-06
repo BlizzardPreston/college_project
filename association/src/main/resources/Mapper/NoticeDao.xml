@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.association.Dao.NoticeDao">
+    <insert id="WriteNotice" parameterType="com.association.entity.Notice">
+        insert into notice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="noticeID != null">
+                noticeID,
+            </if>
+            <if test="clubID != null">
+                clubID,
+            </if>
+            <if test="sendname != null">
+                sendname,
+            </if>
+            <if test="Info != null">
+                Info,
+            </if>
+            <if test="imgURL != null">
+                imgURL,
+            </if>
+
+            <if test="mycomID != null">
+                mycomID,
+            </if>
+            <if test="datetime != null">
+                datetime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="noticeID != null">
+                #{noticeID,jdbcType=BIGINT},
+            </if>
+            <if test="clubID != null">
+                #{clubID,jdbcType=INTEGER},
+            </if>
+            <if test="sendname != null">
+                #{sendname,jdbcType=VARCHAR},
+            </if>
+            <if test="Info != null">
+                #{Info,jdbcType=VARCHAR},
+            </if>
+            <if test="imgURL != null">
+                #{imgURL,jdbcType=VARCHAR},
+            </if>
+            <if test="mycomID != null">
+                #{mycomID,jdbcType=BIGINT},
+            </if>
+            <if test="datetime != null">
+                #{datetime,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <select id="AllNotice" resultType="com.association.entity.Notice">
+        select * from notice
+    </select>
+    <select id="getNoticeByClubID" resultType="com.association.entity.Notice">
+        select * from notice where clubID=#{cid}
+    </select>
+    <delete id="deleteNoticeByNoticeID" >
+        delete from notice where noticeID=#{nid}
+    </delete>
+</mapper>

@@ -41,5 +41,8 @@ public class StudentService {
     public boolean addClubMenber(long id,String name ,String work,int cid){
         return studentDao.addClubMenber(id,name,work,cid);
     }
+    public int getClubIDByStudentID(long sid){
+        return studentDao.getClubIDByStudentID(sid);
+    }
 
 }

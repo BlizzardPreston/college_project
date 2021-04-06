@@ -1,0 +1,34 @@
+package com.association.controller;
+
+import com.association.common.Result;
+import com.association.common.currentDate;
+import com.association.entity.Notice;
+import com.association.entity.Recruit;
+import com.association.service.NoticeService;
+import com.association.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@CrossOrigin(origins = "*",maxAge = 3600)
+@Controller
+@RequestMapping("/notice")
+public class NoticeController {
+    @Autowired
+    private NoticeService noticeService;
+    @Autowired
+    private StudentService studentService;
+    //时间
+    currentDate date=new currentDate();
+
+    @RequestMapping("WriteNotice")
+    @ResponseBody
+    public Result WriteRecruit(@RequestParam String title, @RequestParam String text, @RequestParam long studentID){
+        Notice notice=new Notice(noticeService.lastNumOfNoticeID(),studentService.getClubIDByStudentID(studentID),studentService.getStudentNameById(studentID),text,"还没做这块",1,date.getCurrentDate());
+        noticeService.WriteNotice(notice);
+        return Result.success("添加recruit成功！");
+    }
+}
