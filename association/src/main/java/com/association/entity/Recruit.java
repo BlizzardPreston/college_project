@@ -14,7 +14,7 @@ import java.util.Date;
 @TableName("recruit")
 public class Recruit implements Serializable {
 //    招聘ID号
-    private long recruitID;
+    private int recruitID;
 //    学生号
     private long studentID;
     //标题
