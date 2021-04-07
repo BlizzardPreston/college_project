@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.association.Dao.PublishDao">
+<select id="getPublishByID" resultType="com.association.entity.Publish">
+    select * from publish where publishID=#{pid}
+</select>
+    <insert id="WritePublish" parameterType="com.association.entity.Publish">
+        insert into publish
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="publishID != null">
+                publishID,
+            </if>
+            <if test="studentID != null">
+                studentID,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="text != null">
+                text,
+            </if>
+            <if test="imgURL != null">
+                imgURL,
+            </if>
+            <if test="datetime != null">
+                datetime,
+            </if>
+            <if test="isSend != null">
+                isSend,
+            </if>
+            <if test="mycomID != null">
+                mycomID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="publishID != null">
+                #{publishID,jdbcType=INTEGER},
+            </if>
+            <if test="studentID != null">
+                #{studentID,jdbcType=BIGINT},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="text != null">
+                #{text,jdbcType=VARCHAR},
+            </if>
+            <if test="imgURL != null">
+                #{imgURL,jdbcType=VARCHAR},
+            </if>
+            <if test="datetime != null">
+                #{datetime,jdbcType=DATE},
+            </if>
+            <if test="isSend != null">
+                #{isSend,jdbcType=INTEGER},
+            </if>
+            <if test="mycomID != null">
+                #{mycomID,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <select id="AllPublish" resultType="com.association.entity.Publish">
+        select * from publish
+    </select>
+</mapper>
