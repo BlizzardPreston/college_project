@@ -63,4 +63,7 @@
     <select id="AllPublish" resultType="com.association.entity.Publish">
         select * from publish
     </select>
+    <select id="AllPublishByStudentID" resultType="com.association.entity.Publish">
+        select * from publish where studentID=#{studentID}
+    </select>
 </mapper>

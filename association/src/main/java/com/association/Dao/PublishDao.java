@@ -11,4 +11,6 @@ public interface PublishDao {
     Publish getPublishByID(@Param("publishID")long pid);
     boolean WritePublish(@Param("publish") Publish publish);
     List<Publish> AllPublish();
+    List<Publish> AllPublishByStudentID(@Param("studentID")long studentID);
+
 }

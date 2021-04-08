@@ -44,5 +44,8 @@ public class StudentService {
     public int getClubIDByStudentID(long sid){
         return studentDao.getClubIDByStudentID(sid);
     }
+    public Student getStudentById(long id){
+        return studentDao.getStudentById(id);
+    }
 
 }
