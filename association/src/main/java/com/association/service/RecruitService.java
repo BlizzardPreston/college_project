@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class RecruitService {
@@ -23,5 +24,7 @@ public class RecruitService {
     public int lastNumOfRecruit(){return recruitDao.AllRecruitID().get(recruitDao.AllRecruitID().size()-1).getRecruitID()+1;}
     public Recruit getRecruitByID(int rid){return recruitDao.getRecruitByID(rid);}
     public boolean deleteRecruitByRID(int rid){return recruitDao.deleteRecruitByRID(rid);}
-
+    public List<Recruit> AllRecruitID(){
+        return recruitDao.AllRecruitID();
+    }
 }

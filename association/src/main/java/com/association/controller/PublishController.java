@@ -43,12 +43,17 @@ public class PublishController {
     @ResponseBody
     public Result getStudent(){
         long id=17251106111L;
-        System.out.println(studentService.getStudentById(id));
+//        System.out.println(studentService.getStudentById(id));
         return Result.success(studentService.getStudentById(id));
     }
     @RequestMapping("AllPublish")
     @ResponseBody
     public Result getAllPublish(){
         return Result.success(publishService.AllPublish());
+    }
+    @RequestMapping("getStudentByID")
+    @ResponseBody
+    public Result getStudentByID(@RequestParam long id){
+        return Result.success(studentService.getStudentById(id));
     }
 }

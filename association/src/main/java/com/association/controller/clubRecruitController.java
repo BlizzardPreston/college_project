@@ -54,4 +54,9 @@ public class clubRecruitController {
         return Result.success(recruitService.deleteRecruitByRID(rid));
 
     }
+    @RequestMapping("getAllRecruit")
+    @ResponseBody
+    public Result getAllRecruit(){
+        return Result.success(recruitService.AllRecruitID());
+    }
 }
