@@ -1,5 +1,6 @@
 package com.association.service;
 
+import com.association.Dao.ClubDao;
 import com.association.Dao.StudentDao;
 import com.association.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import java.util.List;
 public class StudentService {
     @Autowired
     private StudentDao studentDao;
+    @Autowired
+    private ClubDao clubDao;
 
     public String getStudentNameById(long id){
         System.out.println("StudentService------->>>getStudentName");
@@ -19,15 +22,15 @@ public class StudentService {
     public List<Student> getAllStudent(){
         return studentDao.getAllStudent();
     }
-    public int addStudent(Student student){
-    if (studentDao.addStudent(student)==1){
+    public boolean addStudent(Student student){
+    if (studentDao.addStudent(student)){
         System.out.println("添加student成功!");
-        return 1;
+        return true;
     }else {
-        System.out.println("添加失败！");
-        return 0;
+        System.out.println("添加student失败！");
+        return false;
     }
-    };
+    }
     public boolean deleteById(long id){
         if(studentDao.deleteById(id)){
             System.out.println("成功删除此学生: "+id);
@@ -39,7 +42,10 @@ public class StudentService {
         return studentDao.updataStudentClubID(id,studentDao.getsStudentNameById(id),0);
     }
     public boolean addClubMenber(long id,String name ,String work,int cid){
-        return studentDao.addClubMenber(id,name,work,cid);
+        if(studentDao.addClubMenber(id,name,work,cid)){
+            clubDao.updataClubNum(cid,studentDao.getStudentListByClubID(cid).size());
+            return true;
+        }else return false;
     }
     public int getClubIDByStudentID(long sid){
         return studentDao.getClubIDByStudentID(sid);

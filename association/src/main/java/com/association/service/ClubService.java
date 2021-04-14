@@ -25,5 +25,8 @@ public class ClubService {
         return clubDao.getClubNameById(id);
     }
     public List<Student> getStudentListByClubID(int id){return studentDao.getStudentListByClubID(id);}
-
+    public boolean updataClubNum(int cid,int num){return clubDao.updataClubNum(cid,num);}
+    public List<Club> AllClubList(){
+        return clubDao.AllClubList();
+    }
 }

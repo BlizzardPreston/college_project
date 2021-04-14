@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.association.Dao.EmailDao">
+    <insert id="WriteEmail" parameterType="com.association.entity.Email">
+        insert into email
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="emailID != null">
+                emailID,
+            </if>
+            <if test="studentIDfrom != null">
+                studentIDfrom,
+            </if>
+            <if test="studentIDto != null">
+                studentIDto,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="text != null">
+                text,
+            </if>
+            <if test="imgURL != null">
+                imgURL,
+            </if>
+            <if test="datetime != null">
+                datetime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="emailID != null">
+                #{emailID,jdbcType=BIGINT},
+            </if>
+            <if test="studentIDfrom != null">
+                #{studentIDfrom,jdbcType=BIGINT},
+            </if>
+            <if test="studentIDto != null">
+                #{studentIDto,jdbcType=BIGINT},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="text != null">
+                #{text,jdbcType=VARCHAR},
+            </if>
+            <if test="imgURL != null">
+                #{imgURL,jdbcType=VARCHAR},
+            </if>
+            <if test="datetime != null">
+                #{datetime,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <select id="AllEmail" resultType="com.association.entity.Email">
+        select * from email
+    </select>
+    <select id="getEmailListByStudentIDto" resultType="com.association.entity.Email">
+        select  * from email where studentIDto=#{studentIDto}
+    </select>
+</mapper>

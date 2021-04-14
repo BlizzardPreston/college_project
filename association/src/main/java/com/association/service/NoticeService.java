@@ -23,4 +23,7 @@ public class NoticeService {
     }
 //    获得最新通知
     public long lastNumOfNoticeID(){return noticeDao.AllNotice().get(noticeDao.AllNotice().size()-1).getNoticeID()+1;}
+    public List<Notice> getNoticListByClubID(int clubID){
+        return noticeDao.getNoticListByClubID(clubID);
+    }
 }

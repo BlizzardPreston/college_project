@@ -79,7 +79,11 @@ public class clubController {
 
         return Result.success("添加用户成功！");
     }
-
+    @RequestMapping("AllClubList")
+    @ResponseBody
+    public Result AllClubList(){
+       return Result.success(clubService.AllClubList());
+    }
 
 
 

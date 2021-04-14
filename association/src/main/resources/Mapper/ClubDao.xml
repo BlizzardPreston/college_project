@@ -8,4 +8,10 @@
 <select id="getClubNameById" resultType="String">
     select clubName from club where clubID=#{id};
 </select>
+    <update id="updataClubNum">
+        update club set clubNum=#{num} where clubID=#{cid}
+    </update>
+    <select id="AllClubList" resultType="com.association.entity.Club">
+        select * from club
+    </select>
 </mapper>

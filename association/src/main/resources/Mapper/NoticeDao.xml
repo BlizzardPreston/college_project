@@ -14,6 +14,9 @@
             <if test="sendname != null">
                 sendname,
             </if>
+            <if test="title != null">
+                title,
+            </if>
             <if test="Info != null">
                 Info,
             </if>
@@ -38,6 +41,9 @@
             <if test="sendname != null">
                 #{sendname,jdbcType=VARCHAR},
             </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
             <if test="Info != null">
                 #{Info,jdbcType=VARCHAR},
             </if>
@@ -61,4 +67,7 @@
     <delete id="deleteNoticeByNoticeID" >
         delete from notice where noticeID=#{nid}
     </delete>
+    <select id="getNoticListByClubID" resultType="com.association.entity.Notice">
+        select * from notice where clubID=#{cid}
+    </select>
 </mapper>

@@ -12,4 +12,5 @@ public interface NoticeDao {
     List<Notice> AllNotice();
     Notice getNoticeByClubID(@Param("clubID") int cid);
     boolean deleteNoticeByNoticeID(@Param("noticeID")long nid);
+    List<Notice> getNoticListByClubID(@Param("clubID")int cid);
 }

@@ -11,22 +11,20 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("notice")
-public class Notice implements Serializable {
-//    社团公告id号
-    private long noticeID;
-//    社团id
-    private int clubID;
-//    发送人姓名
-    private String sendname;
-//    标题
+@TableName("email")
+public class Email implements Serializable {
+    //    邮件id
+    private long emailID;
+    //    发送人id
+    private long studentIDfrom;
+    //    接收人id
+    private long studentIDto;
+    //    标题
     private String title;
-//    公告内容
-    private String Info;
-//    图片路径
+    //    文本信息
+    private String text;
+    //    图片路径
     private String imgURL;
-//    评论ID号
-    private long mycomID;
-//    发布时间
+    //    时间
     private Date datetime;
 }

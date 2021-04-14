@@ -11,5 +11,5 @@ public interface UserDao {
     User getMapByID(@Param("studentID") long id);
     String chackUserAuthInfo(@Param("studentID") long id);
     User getUserByName(@Param("userName")String name);
-    int addUser(User user);
+    boolean addUser(User user);
 }

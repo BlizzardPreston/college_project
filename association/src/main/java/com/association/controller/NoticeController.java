@@ -27,8 +27,15 @@ public class NoticeController {
     @RequestMapping("WriteNotice")
     @ResponseBody
     public Result WriteRecruit(@RequestParam String title, @RequestParam String text, @RequestParam long studentID){
-        Notice notice=new Notice(noticeService.lastNumOfNoticeID(),studentService.getClubIDByStudentID(studentID),studentService.getStudentNameById(studentID),text,"还没做这块",1,date.getCurrentDate());
+        Notice notice=new Notice(noticeService.lastNumOfNoticeID(),studentService.getClubIDByStudentID(studentID),studentService.getStudentNameById(studentID),title,text,"还没做这块",1,date.getCurrentDate());
         noticeService.WriteNotice(notice);
         return Result.success("添加recruit成功！");
+    }
+    @RequestMapping("showNoticByclubID")
+    @ResponseBody
+    public Result showNotic(){
+        int clubID=3;
+//        System.out.println(noticeService.getNoticListByClubID(clubID));
+        return Result.success(noticeService.getNoticListByClubID(clubID));
     }
 }

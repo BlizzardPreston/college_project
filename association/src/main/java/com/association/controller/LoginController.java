@@ -1,19 +1,21 @@
 package com.association.controller;
+import com.association.common.Result;
+import com.association.entity.Student;
+import com.association.service.StudentService;
 import com.association.service.UserService;
+import com.baomidou.mybatisplus.extension.api.R;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.association.entity.User;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-
+@CrossOrigin(origins = "*",maxAge = 3600)
 @Controller
 @RequestMapping("user")
 public class LoginController {
@@ -24,6 +26,9 @@ public class LoginController {
     }*/
     @Autowired
     private UserService login;
+    @Autowired
+    private StudentService studentService;
+
 //    返回首页
     @RequestMapping(value = "toLogin",method = {RequestMethod.POST,RequestMethod.GET})
     public String login(){
@@ -67,5 +72,17 @@ public class LoginController {
             model.addAttribute("msg","密码错误");
             return "shiroLogin";
         }
+    }
+    @RequestMapping("register")
+    @ResponseBody
+    public Result  register(@RequestParam long studentID,@RequestParam String password,@RequestParam String userName,@RequestParam String studentName,@RequestParam int integer,@RequestParam String Major,@RequestParam String Gender){
+        User user=new User(studentID,userName,password,0,3);
+        Student student=new Student(studentID,studentName,Major,integer,Gender,0,"");
+//        login.addUser(user);
+//        studentService.addStudent(student);
+        if(login.addUser(user)&& studentService.addStudent(student)){
+            return Result.success("success to add user and student!");
+        }else return Result.fail();
+
     }
 }

@@ -40,4 +40,14 @@ public class UserService {
     public String chackUserAuthInfo(long id){
         return userDao.chackUserAuthInfo(id);
     }
+    public boolean addUser(User user) {
+        if (userDao.addUser(user)) {
+            System.out.println("添加user成功!");
+            return true;
+        }else {
+            System.out.println("添加user失败！");
+            return false;
+        }
+
+        }
 }
