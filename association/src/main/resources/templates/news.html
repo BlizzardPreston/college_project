@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -11,13 +11,16 @@
 
     <title>社团管理首页-校园新鲜</title>
 
+    <!--    要放前面！-->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+
     <link rel="shortcut icon" href="favicon.ico">
     <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
 
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/style.css?v=4.1.0" rel="stylesheet">
-
 
 </head>
 
@@ -58,16 +61,15 @@
                     </div>
                     <div class="ibox-content">
                         <p><i class="fa fa-send-o"></i> 博客：<a href="http://www.baidu.com"
-                                target="_blank">http://www.baidu.com</a>
+                                target=" _blank">http://www.baidu.com</a>
                         </p>
-                        <p><i class="fa fa-qq"></i> QQ：<a
-                                href="https://qqapp.qq.com/app/353.html"
+                        <p><i class="fa fa-qq"></i> QQ：<a href="https://qqapp.qq.com/app/353.html"
                                 target="_blank">1478337513</a>
                         </p>
                         <p><i class="fa fa-weixin"></i> 微信：<a href="javascript:;">XinjianCHEN</a>
                         </p>
                         <p><i class="fa fa-credit-card"></i> 支付宝：<a href="javascript:;" class="支付宝信息">芜湖好耶
-                                </a>
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -75,136 +77,23 @@
             <div class="col-sm-9">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>今日新鲜    按数据库读取顺序，最新放前面</h5>
+                        <h5>今日新鲜 按数据库读取顺序，最新放前面</h5>
                     </div>
                     <div class="ibox-content no-padding">
                         <div class="panel-body">
                             <div class="panel-group" id="version">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version" href="#001">新1</a><code
-                                                class="pull-right">data-tame 数据库最新录入</code>
-                                        </h5>
-                                    </div>
-                                    <div id="001" class="panel-collapse collapse in">
-                                        <div class="panel-body">
-                                            <p><span class="badge badge-primary">绿色健康</span>
-                                            </p>
-                                            <p><span class="badge badge-danger">请勿模仿</span>
-                                            </p>
-                                            <ol>
-                                                <li>增加不支持IE8的页面提示</li>
-                                                <li>修复页面链接和表单提交默认在新窗口中打开的问题</li>
-                                                <li>更新suggest插件，修复错位问题</li>
-                                                <li>升级bootstrap版本到3.3.6版本</li>
-                                                <li>升级layer到2.1版本</li>
-                                                <li>升级echarts到2.2.7版本</li>
-                                                <li>升级webuploader到0.1.5版本</li>
-                                                <li>修复网络条件不好情况下，页面加载提示遮挡页面无法操作的问题</li>
-                                            </ol>
-                                        </div>
-                                    </div>
+
+
                                 </div>
 
-                                <div class="panel  panel-default">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version" href="#002">新2</a><code
-                                                class="pull-right">读取数据库</code>
-                                        </h5>
-                                    </div>
-                                    <div id="002" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <p><span class="badge badge-primary">绿色健康</span>
-                                            </p>
-                                            <p><span class="badge badge-danger">请勿模仿</span>
-                                            </p>
-                                            <ol>
-                                                <li>升级bootstrap到最新版本3.3.5；</li>
-                                                <li>升级jquery版本到最新版本2.1.4；</li>
-                                                <li>升级Font Awesome到最新版本4.4.0；</li>
-                                                <li>修复了登录页面的一处错误；</li>
-                                                <li>修复了主页面出现多个滚动条的问题；</li>
-                                                <li>修复了已知的各种浏览器兼容问题；</li>
-                                                <li>修复了layphoto和suggest等页面的显示问题；</li>
-                                                <li>新增Glyphicons字体图标的预览；</li>
-                                                <li>新增对不支持的浏览器的友好提示；</li>
-                                                <li>新增视频/音乐播放器的支持；</li>
-                                                <li>新增Bootstrap Table(推荐)；</li>
-                                                <li>进一步完善了开发文档；</li>
-                                                <li>提供了离线支持，开箱即用；</li>
-                                                <li>对IE系列的浏览器支持更好。</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                <div id="newslistDiv"></div>
+                                <div id="newsClublistDiv"></div>
+
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version" href="#003">新3</a><code
-                                                class="pull-right">2015.09.22</code>
-                                        </h5>
-                                    </div>
-                                    <div id="003" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <p><span class="badge badge-primary">绿色健康</span>
-                                            </p>
-                                            <p><span class="badge badge-danger">请勿模仿</span>
-                                            </p>
-                                            <ol>
-                                                <li>修复360浏览器个别情况下崩溃的问题；</li>
-                                                <li>优化360浏览器的显示效果；</li>
-                                                <li>修复layim弹出聊天窗口出错的问题；</li>
-                                                <li>优化登录、注册、锁屏页面，使其在右侧主体区域打开时转到新页面打开；</li>
-                                                <li>优化了移动设备的展示效果。</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version" href="#004">新4</a><code
-                                                class="pull-right">2015.09.18</code>
-                                        </h5>
-                                    </div>
-                                    <div id="004" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <p><span class="badge badge-primary">绿色健康</span>
-                                            </p>
-                                            <p><span class="badge badge-danger">请勿模仿</span>
-                                            </p>
-                                            <ol>
-                                                <li>修复登录页面文本框输入字符不可见的问题；</li>
-                                                <li>修复火狐下conTabs关闭操作按钮不下拉的问题；</li>
-                                                <li>修复IOS系统下各种浏览器右侧内容不滚动的问题；</li>
-                                                <li>优化了主页示例三的显示；</li>
-                                                <li>修复了jqgrid编辑弹框导致页面错位的问题；</li>
-                                                <li>使百度Echarts图标支持响应式，并优化了其显示；</li>
-                                                <li>修复Summernote文本编辑器下拉菜单显示不全的问题；</li>
-                                                <li>修复Toastr通知图标显示多个的问题。</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version"
-                                                href="#005">新5</a><code class="pull-right">数据库</code>
-                                        </h5>
-                                    </div>
-                                    <div id="005" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <p>自H+ v3.0版发布后，又陆续发布了7个小版本，修复了一些兼容性问题，但是没有对外发布，更新日志略过……</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version" href="#006">新6</a><code
+                                            <a data-toggle="collapse" data-parent="#version" href="#006">文本样式</a><code
                                                 class="pull-right">datatime</code>
                                         </h5>
                                     </div>
@@ -223,116 +112,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version" href="#007">新7</a><code
-                                                class="pull-right">datatime</code>
-                                        </h5>
-                                    </div>
-                                    <div id="007" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <p><span class="badge badge-primary">绿色健康</span>
-                                            </p>
-                                            <p><span class="badge badge-danger">请勿模仿</span>
-                                            </p>
-                                            <ol>
-                                                <li>根据用户的反馈，根据用户的反馈，移除了CDN支持，CDN服务将于2015年6月30日之后结束支持，如果您正在使用CDN服务，请尽快完成迁移，对于给您造成的不便，我们表示非常抱歉；
-                                                </li>
-                                                <li>升级Bootstrap到最新版本v3.3.4；
-                                                </li>
-                                                <li>修改了style.css，修复了其中的一些bug；
-                                                </li>
 
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version" href="#008">新8</a><code
-                                                class="pull-right">datatime</code>
-                                        </h5>
-                                    </div>
-                                    <div id="008" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <p><span class="badge badge-primary">绿色健康</span>
-                                            </p>
-                                            <p><span class="badge badge-danger">请勿模仿</span>
-                                            </p>
-                                            <ol>
-                                                <li>增加cdn服务支持，cdn节点使用阿里云服务，可保证您的项目随时使用最新版本的H+，免去反复升级的麻烦；
-                                                </li>
-                                                <li>修复一些问题；</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version" href="#009">新9</a><code
-                                                class="pull-right">datatime</code>
-                                        </h5>
-                                    </div>
-                                    <div id="009" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <p><span class="badge badge-primary">绿色健康</span>
-                                            </p>
-                                            <p><span class="badge badge-danger">请勿模仿</span>
-                                            </p>
-                                            <ol>
-                                                <li>增加RTL布局及RTL支持，可点击右上角齿轮按钮选择RTL模式查看；
-                                                </li>
-                                                <li>增加上下布局； <a href="index_4.html" title="去看看"><i
-                                                            class="fa fa-eye"></i></a>
-                                                </li>
-                                                <li>在360浏览器6.0以上版本中强制以webkit内核解析，体验更佳；
-                                                </li>
-                                                <li>增加<a href="toastr_notifications.html">Toastr通知</a>、<a
-                                                        href="nestable_list.html">嵌套列表</a>、<a
-                                                        href="timeline_v2.html">时间轴</a>、<a
-                                                        href="forum_main.html">论坛</a>、<a
-                                                        href="code_editor.html">代码编辑器</a>、<a
-                                                        href="modal_window.html">模态窗口</a>、<a
-                                                        href="validation.html">表单验证</a>、<a
-                                                        href="tree_view_v2.html">树形视图</a>、<a
-                                                        href="chat_view.html">聊天窗口</a>等页面；
-                                                </li>
-                                                <li>升级<a href="icons.html">Font Awesome</a>，<a
-                                                        href="form_simditor.html">Simditor</a>等到最新版本；
-                                                </li>
-                                                <li>优化部分内容
-                                                </li>
-
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version" href="#0010">新10</a><code
-                                                class="pull-right">datatime</code>
-                                        </h5>
-                                    </div>
-                                    <div id="0010" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <p><span class="badge badge-primary">绿色健康</span>
-                                            </p>
-                                            <p><span class="badge badge-danger">请勿模仿</span>
-                                            </p>
-                                            <ol>
-                                                <li>修复一些错误；
-                                                </li>
-                                                <li>修复了WebUploader中的一些问题； <a href="form_webuploader.html" title="去看看"><i
-                                                            class="fa fa-eye"></i></a>
-                                                </li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -438,14 +218,132 @@
 
     <!-- 全局js -->
     <script src="/js/jquery.min.js?v=2.1.4"></script>
-    <script src="./js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="/js/bootstrap.min.js?v=3.3.6"></script>
     <script src="/js/plugins/layer/layer.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 
     <!-- 自定义js -->
     <script src="/js/content.js"></script>
 
+
     <!-- 欢迎信息 -->
     <script src="/js/welcome.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let publishlist;
+            let student;
+            $.ajax({
+                type: "POST",
+                url: "/publish/getStudent",
+                // dataType: "text",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    console.log(data)
+                    student = data.data;
+                    return student;
+                },
+                error: function (data) {
+                    alert("AJAX请求出错" + data);
+                }
+            })
+            $.ajax({
+                type: "POST",
+                url: "/publish/AllPublish",
+                // dataType: "text",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    var iDIV = 1;
+                    console.log(data);
+                    var list=data.data;
+                    console.log(list);
+                    publishlist = data.data;
+                    for(var num=data.data.length;num>0;num--){
+                        
+                        str1 =
+                            '<div class="panel panel-default"><div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#version" href="#' +
+                            iDIV + '">'+list[num-1].title +'-->'+ getName(list[num-1].studentID) + '</a><code class="pull-right">' + list[num-1]
+                            .datetime + '</code></h5></div>'
+
+                        str2 = '<div id="' + iDIV +
+                            '" class="panel-collapse collapse in"><div class="panel-body"><p><span class="badge badge-primary">个人发布</span></p>' +
+                                list[num-1].text + '</p></div></div></div>'
+                        iDIV++;
+                        $("#newslistDiv").append(str1 + str2);
+                        $("#username" + iDIV).append(student.studentName);
+                    }
+                    return publishlist;
+                },
+                error: function (data) {
+                    alert("AJAX请求出错" + data);
+                }
+            })
+            $.ajax({
+                type: "POST",
+                url: "/clubRecruit/getAllRecruit",
+                // dataType: "text",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    var iDIV = 100;
+                    console.log(data);
+                    var list=data.data;
+                    console.log(list);
+                    recruitlist = data.data;
+                    for(var num=data.data.length;num>0;num--){
+                        
+                        str1 =
+                            '<div class="panel panel-default"><div class="panel-heading"><h5 class="panel-title"><a data-toggle="collapse" data-parent="#version" href="#' +
+                            iDIV + '">'+list[num-1].title +'-->'+ getName(list[num-1].studentID) + '</a><code class="pull-right">' + list[num-1]
+                            .datetime + '</code></h5></div>'
+
+                        str2 = '<div id="' + iDIV +
+                            '" class="panel-collapse collapse in"><div class="panel-body"><p><span class="badge badge-danger">社团发布</span></p>' +
+                                list[num-1].text + '</p></div></div></div>'
+                        iDIV++;
+                        $("#newslistDiv").append(str1 + str2);
+                        $("#username" + iDIV).append(student.studentName);
+                    }
+                    return recruitlist;
+                },
+                error: function (data) {
+                    alert("AJAX请求出错" + data);
+                }
+            })
+
+
+
+
+
+
+
+        })
+    </script>
+
+    <script type="text/javascript">
+        function getName(studentid){
+            var name;
+            $.ajax({
+                type: "POST",
+                url: "/publish/getStudentByID",
+                // dataType: "text",
+                data:{id:studentid},
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    console.log(data.data.studentName);
+                    name=data.data.studentName;
+                },
+                error: function (data) {
+                    alert("AJAX请求出错" + data);
+                }  
+            })
+            return name;
+        }
+    </script>
 </body>
 
 </html>

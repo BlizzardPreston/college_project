@@ -30,7 +30,7 @@ public class LoginController {
     private StudentService studentService;
 
 //    返回首页
-    @RequestMapping(value = "toLogin",method = {RequestMethod.POST,RequestMethod.GET})
+    @RequestMapping(value = "toLogin",method = {RequestMethod.POST,RequestMethod.GET,RequestMethod.OPTIONS,RequestMethod.DELETE})
     public String login(){
         return "Login";
     }
@@ -51,6 +51,7 @@ public class LoginController {
         } else
             return "Index";
     }
+
 
     @RequestMapping(value = "toShiroLogin",method = {RequestMethod.POST,RequestMethod.GET})
     public String shirologin(){
@@ -84,5 +85,21 @@ public class LoginController {
             return Result.success("success to add user and student!");
         }else return Result.fail();
 
+    }
+    @RequestMapping(value = "/shiroLoginHtml",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public Result shiroLoginhtml(@RequestParam long id,@RequestParam String pw)
+    {
+        User user = login.getuserbylogin(id,pw);
+        try{
+            login.shiroLoginByNameAndPassw(Long.toString(id),pw);
+            return Result.success();
+        }catch (UnknownAccountException e){
+            System.out.println("用户名错误");
+            return Result.fail();
+        }catch (IncorrectCredentialsException e){
+            System.out.println("密码错误");
+            return Result.fail();
+        }
     }
 }

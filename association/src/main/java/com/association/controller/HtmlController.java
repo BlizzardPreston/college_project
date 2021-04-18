@@ -28,8 +28,10 @@ public class HtmlController {
     }
     @RequestMapping("club_recruit")
     public String toClub_recruitHtml(){
-        return "Recruitment";
+        return "club_recruit";
     }
+    @RequestMapping("index")
+    public String toIndex(){return "index";}
     @RequestMapping("index_v2")
     public String toindex_v2Html(){
         return "index_v2";
@@ -42,6 +44,17 @@ public class HtmlController {
     public String toShiroLoginHtml(){
         return "ShiroLogin";
     }
+    @RequestMapping("activity")
+    public String toActivityHtml(){return "activity";}
+    @RequestMapping("clubdetails")
+    public String toClubdetailsHtml(){return "clubdetails";}
+    @RequestMapping("email")
+    public String toEmailHtml(){return "email";}
+    @RequestMapping("Login")
+    public String toLoginHtml(){return "Login";}
+    @RequestMapping("mailbox")
+    public String toMailboxHtml(){return "mailbox";}
+
 
 }
 

@@ -50,7 +50,7 @@
                 #{imgURL,jdbcType=VARCHAR},
             </if>
             <if test="datetime != null">
-                #{datetime,jdbcType=DATE},
+                #{datetime,jdbcType=TIMESTAMP},
             </if>
             <if test="isSend != null">
                 #{isSend,jdbcType=INTEGER},
@@ -66,4 +66,7 @@
     <select id="AllPublishByStudentID" resultType="com.association.entity.Publish">
         select * from publish where studentID=#{studentID}
     </select>
+    <delete id="deleteByPublishId" >
+        delete from publish where publishID=#{pid}
+    </delete>
 </mapper>

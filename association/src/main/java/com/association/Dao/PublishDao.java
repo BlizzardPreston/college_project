@@ -12,5 +12,5 @@ public interface PublishDao {
     boolean WritePublish(@Param("publish") Publish publish);
     List<Publish> AllPublish();
     List<Publish> AllPublishByStudentID(@Param("studentID")long studentID);
-
+    boolean deleteByPublishId(@Param("publishID")int pid);
 }

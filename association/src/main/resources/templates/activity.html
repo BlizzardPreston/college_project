@@ -102,7 +102,7 @@
                             title="放弃"><i class="fa fa-times"></i> 放弃</a>
                     </div>
                     <h2>
-                        社团公告(招聘)&&社团通知 发布页面
+                        社团活动 发布页面
                     </h2>
                 </div>
                 <div class="mail-box">
@@ -110,21 +110,35 @@
 
                     <div class="mail-body">
 
-                        <form class="form-horizontal" id="recruitform" onsubmit="return false" action="#" 
-                        name="recruitform" method="POST" target="fmResult">
+                        <form class="form-horizontal" id="activityform" onsubmit="return false" action="#" 
+                        name="activityform" method="POST" target="fmResult">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">标题：</label>
+                                <label class="col-sm-2 control-label">活动标题：</label>
 
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control"  th:name="title" id="title" name="title" value="财经大学 青协招新预告">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">内容：</label>
+                                <label class="col-sm-2 control-label">活动内容：</label>
 
                                 <div class="col-sm-10">
                                     <!-- <input type="text" class="form-control" value=""> -->
-                                    <textarea rows="10" style="width: 100%;"  th:name="text" id="text" name="text">正文</textarea>
+                                    <textarea rows="10" style="width: 100%;"  th:name="text" id="text" name="text"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label required">活动地点</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  th:name="address" id="address" name="address" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label required">活动时间</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  th:name="activityTime" id="activityTime" name="activityTime" >
                                 </div>
                             </div>
                             <div class="form-group">
@@ -137,11 +151,7 @@
 
                         <div class="mail-body text-right tooltip-demo">
                             <a href="#" class="btn btn-sm btn-primary" data-toggle="tooltip"
-                                data-placement="top" title="Send" type="submit" onclick="recruitup()"><i class="fa fa-reply"></i> 发送社团招聘</a>
-                            <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip"
-                                data-placement="top" title="Discard email" onclick=""><i class="fa fa-times"></i> 发送社团公告</a>
-                            <a href="#" class="btn btn-white btn-sm" data-toggle="tooltip"
-                                data-placement="top" title="Move to draft folder" onclick="noticeup()"><i class="fa fa-pencil" ></i> 发送社团通知</a>
+                                data-placement="top" title="Send" type="submit" onclick="activityup()"><i class="fa fa-reply"></i> 发送社团活动</a>
                         </div>
                         </form>
                     <div class="clearfix"></div>
@@ -195,35 +205,19 @@
         };
     </script>
     <script type="text/javascript">
-        function recruitup(){
+        function activityup(){
             $.ajax({
                 type:"POST",
                 dataType:"text",
-                url:"/clubRecruit/WriteRecruitlocal",
-                data: $('#recruitform').serialize(),
+                url:"/activity/WriteActivity",
+                data: $('#activityform').serialize(),
                 success:function(data){
                     alert("发送成功！");
                     console.log(data);
                     window.location.reload(true);
                 },
                 error:function(){
-                    alert("up recruit执行出错")
-                }
-            })
-        }
-        function noticeup(){
-            $.ajax({
-                type:"POST",
-                dataType:"text",
-                url:"/notice/WriteNoticelocal",
-                data: $('#recruitform').serialize(),
-                success:function(data){
-                    alert("发送成功！");
-                    console.log(data);
-                    window.location.reload(true);
-                },
-                error:function(){
-                    alert("up notice执行出错")
+                    alert("up activity执行出错")
                 }
             })
         }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-
+import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,5 +28,5 @@ public class Notice implements Serializable {
 //    评论ID号
     private long mycomID;
 //    发布时间
-    private Date datetime;
+    private LocalDateTime datetime;
 }

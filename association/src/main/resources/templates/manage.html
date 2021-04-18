@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -10,17 +10,17 @@
     <title>社团管理</title>
 
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="../static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="../static/css/animate.css" rel="stylesheet">
-    <link href="../static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
     <!-- Sweet Alert -->
-    <link href="../static/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-    <link href="../static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
 </head>
 
 <body class="gray-bg top-navigation">
-
+    <div onclick="aa()"></div>
     <div id="wrapper">
         <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom white-bg">
@@ -30,7 +30,7 @@
                             data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                             <i class="fa fa-reorder"></i>
                         </button>
-                        <a href="news.html" class="navbar-brand">首页</a>
+                        <a href="/html/news" class="navbar-brand">首页</a>
                     </div>
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav navbar-nav">
@@ -51,7 +51,7 @@
                         </ul>
                         <ul class="nav navbar-top-links navbar-right">
                             <li>
-                                <a href="login.html">
+                                <a href="/html/login">
                                     <i class="fa fa-sign-out"></i> 退出
                                 </a>
                             </li>
@@ -65,13 +65,14 @@
                         <div class="col-md-4">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
-                                    <h5>社团名字{club_name}</h5>
+                                    <h5>社团名字</h5>
                                     <div class="ibox-tools">
-                                        <span class="label label-primary">社团类型{club_type}</span>
+                                        <span class="label label-primary" id="clubType">社团类型：</span>
                                     </div>
                                 </div>
                                 <div class="ibox-content no-padding">
                                     <div class="flot-chart m-t-lg" style="height: 55px;">
+                                        <h1 id="clubName" style="margin-left: 20%;"> </h1>
                                         <!-- <div><img src="xxxxxxxxx.jpg"></div> -->
                                     </div>
                                 </div>
@@ -82,10 +83,10 @@
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <span class="label label-success pull-right">月</span>
-                                    <h5>社团人人数</h5>
+                                    <h5>社团人数</h5>
                                 </div>
                                 <div class="ibox-content">
-                                    <h1 class="no-margins">${club_num}</h1>
+                                    <h1 class="no-margins" style="margin-left: 40%;" id="clunNum"> </h1>
 
                                 </div>
                             </div>
@@ -93,11 +94,11 @@
                         <div class="col-md-2">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
-                                    <span class="label label-info pull-right">年</span>
+                                    <span class="label label-info pull-right">注</span>
                                     <h5>男女比例</h5>
                                 </div>
                                 <div class="ibox-content">
-                                    <h1 class="no-margins">7:3</h1>
+                                    <h1 class="no-margins"  style="margin-left: 40%;" id="clubGender"></h1>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +132,7 @@
                                     <h5>人员管理</h5>
                                     <div class="ibox-tools">
                                         <a class="collapse-link">
-                                            <i class="fa fa-chevron-up"></i>
+                                            <i class="fa fa-chevron-up" id="666"></i>
                                         </a>
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                             <i class="fa fa-wrench"></i>
@@ -159,7 +160,7 @@
                                                     <th>操作</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="table_tbody">
                                                 <tr>
                                                     <td>name1</td>
                                                     <!-- <td><span class="pie">0.52/1.561</span></td> -->
@@ -168,11 +169,13 @@
                                                     <td>2017级</td>
                                                     <td>团长</td>
                                                     <td>
-                                                        <a data-toggle="modal" href="manage.html#modal-form"><i
+                                                        <a data-toggle="modal" href="/html/manage#modal-form"><i
                                                                 class="fa fa-plus text-navy fa-2x"></i></a>
                                                         <!-- <a data-toggle="modal" href="manage.html#updata-form"><i
                                                                 class="fa fa-check text-navy fa-2x"></i></a> -->
-                                                        <a><i class="fa fa-trash text-navy fa-2x demo4"></i></a>
+                                                        <a><i class="demo4 fa fa-trash text-navy fa-2x"></i></a>
+                                                        <a><i class="fa fa-user text-navy fa-2x"
+                                                                onclick="getid(123456)"></i></a>
                                                     </td>
                                                 </tr>
 
@@ -192,7 +195,7 @@
                         <div class="col-sm-1">
 
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                                href="manage.html#add-form">新增</button> </span>
+                                href="/html/manage#add-form">新增</button> </span>
 
                         </div>
                     </div>
@@ -223,7 +226,7 @@
                                     <p>通过填写对应信息新增社团成员(⊙o⊙)</p>
                                 </div>
                                 <div class="col-sm-1 b-r">
-                                    <a href="manage.html"> <i class="fa fa-times"></i></a>
+                                    <a href="/html/manage"> <i class="fa fa-times"></i></a>
                                 </div>
                             </div>
                             <form role="form" action="localhosst:8080/xxxx/xxxx">
@@ -245,7 +248,7 @@
                                 </div> -->
                                 <div>
                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"
-                                        href="manage.html#"><strong>确定编辑</strong>
+                                        href="/html/manage#"><strong>确定编辑</strong>
                                     </button>
                                 </div>
                             </form>
@@ -267,29 +270,34 @@
                                     <p>通过填写对应信息新增社团成员(⊙o⊙)</p>
                                 </div>
                                 <div class="col-sm-1 b-r">
-                                    <a href="manage.html"> <i class="fa fa-times"></i></a>
+                                    <a href="/html/manage"> <i class="fa fa-times"></i></a>
                                 </div>
                             </div>
-                            <form role="form" action="localhosst:8080/xxxx/xxxx">
+                            <form role="form" id="addform" onsubmit="return false" action="#"
+                                name="addform" method="POST" target="fmResult">
                                 <div class="form-group">
                                     <label>学号：</label>
-                                    <input type="number" placeholder="请输入新增学号" class="form-control">
+                                    <input type="number" th:name="studentID" id="studentID" name="studentID"
+                                        placeholder="请输入新增学号" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>姓名：</label>
-                                    <input type="text" placeholder="请输入姓名" class="form-control">
+                                    <input type="text" th:name="studentName" id="studentName" name="studentName"
+                                        placeholder="请输入姓名" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>职位：</label>
-                                    <input type="text" placeholder="请输入职位" class="form-control">
+                                    <input type="text" th:name="work" id="work" name="work" placeholder="请输入职位"
+                                        class="form-control">
                                 </div>
-                                <!-- <div class="form-group">
-                                    <label>密码：</label>
-                                    <input type="password" placeholder="请输入密码" class="form-control">
-                                </div> -->
+                                <div class="form-group">
+                                    <label>社团代码</label>
+                                    <input type="password" th:name="clubID" id="clubID" name="clubID" placeholder="社团代码"
+                                        class="form-control" value="">
+                                </div>
                                 <div>
-                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"
-                                        href="manage.html#"><strong>确定新增</strong>
+                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit" id="submit"
+                                    onclick="addperson()"><strong>确定新增</strong>
                                     </button>
                                 </div>
                             </form>
@@ -299,55 +307,64 @@
             </div>
         </div>
     </div>
+    <div>
+        <iframe width="0px" height="0px" name="fmResult" style="display: none;"></iframe>
+    </div>
 
     <!-- 全局js -->
-    <script src="../static/js/jquery.min.js?v=2.1.4"></script>
-    <script src="../static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js?v=3.3.6"></script>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 
-
     <!-- 自定义js -->
-    <script src="../static/js/content.js?v=1.0.0"></script>
+    <script src="/js/content.js"></script>
 
     <!-- Sweet alert 弹窗样式 -->
-    <script src="../static/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="/js/plugins/sweetalert/sweetalert.min.js"></script>
     <!-- Flot -->
-    <script src="../static/js/plugins/flot/jquery.flot.js"></script>
-    <script src="../static/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="../static/js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="/js/plugins/flot/jquery.flot.js"></script>
+    <script src="/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="/js/plugins/flot/jquery.flot.resize.js"></script>
 
     <!-- ChartJS-->
-    <script src="../static/js/plugins/chartJs/Chart.min.js"></script>
+    <script src="/js/plugins/chartJs/Chart.min.js"></script>
 
     <!-- Peity -->
-    <script src="../static/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="/js/plugins/peity/jquery.peity.min.js"></script>
 
     <!-- Peity demo -->
-    <script src="../static/js/demo/peity-demo.js"></script>
+    <script src="/js/demo/peity-demo.js"></script>
 
     <!-- ECharts -->
-    <script src="../static/js/plugins/echarts/echarts-all.js"></script>
+    <script src="/js/plugins/echarts/echarts-all.js"></script>
 
     <!-- 自定义js -->
-    <script src="../static/js/content.js?v=1.0.0"></script>
+    <script src="/js/content.js?v=1.0.0"></script>
+    <!-- <script src="../static/js/jquery.form.js"></script> -->
     <!-- ECharts demo data -->
-    <script src="../static/js/demo/echarts-demo.js"></script>
+    <script src="/js/demo/echarts-demo.js"></script>
 
     <script type="text/javascript">
-        // window.onload(function requestData() {
+        // 自启动方法
+        // (function aa() {
+        //     // console.log(123)
         //     $.ajax({
-        //         url: "要访问的地址",
-        //         type: "post",
+        //         type: "POST",
+        //         url: "http://localhost:8888/club/getClubByID/1",
+        //         // dataType: "text",
         //         dataType: "json",
+        //         async: false,
+
         //         success: function (data) {
-        //             /*这个方法里是ajax发送请求成功之后执行的代码*/
-        //             showData(data); //我们仅做数据展示
+        //             $("#clubName").append(data.clubName);
+        //             console.log(data)
         //         },
-        //         error: function (msg) {
-        //             alert("ajax连接异常：" + msg);
+        //         error: function (data) {
+        //             alert("请求出错" + data);
+        //             console.log(data);
         //         }
-        //     });
-        // });
+        //     })
+        // })()
 
         // function showData(data) {
         //     var str = ""; //定义用于拼接的字符串4         
@@ -355,39 +372,150 @@
         //         //拼接表格的行和列
         //         str = "<tr><td>" + data[i].name + "</td><td>" + data[i].password + "</td></tr>"; //改！
         //         //追加到table中
-        //         $("#tab").append(str);
+        //         $("#table_tbody").append(str);
         //     }
         // }
 
+        // 执行删除任务
+        function getid(id) {
+            console.log(id);
+            swal({
+                    title: "您确定要从社团删除这个人的信息吗",
+                    text: "人间有情，请谨慎操作！",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "是的，我要删除！",
+                    cancelButtonText: "让我再考虑一下…",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        //ajax
+                        $.ajax({
+                            type: "post",
+                            url: "/club/deleteById",
+                            data: {
+                                "id": id
+                            },
+                            dataType: "json",
+                            async: false,
+                            success: function (data) {
+                                console.log(data);
+                                window.location.reload(true);
+                            },
+                            error: function (data) {
+                                alert("AJAX请求出错" + data);
+                            }
+                        })
+                        // alert("删除执行完毕-id：" + id);
 
-        //增删改查点击消失div
-        function turnoff(obj) {
-            document.getElementById(obj).style.display = "none";
+                        swal("删除成功！", "您已经删除了这条信息。", "success");
+                    } else {
+                        swal("已取消", "您取消了删除操作！", "error");
+                    }
+                });
         }
 
-        //删除按钮功能
+
         $(document).ready(function () {
-            $('.demo4').click(function () {
-                swal({
-                        title: "您确定要删除这条信息吗",
-                        text: "删除后将无法恢复，请谨慎操作！",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "是的，我要删除！",
-                        cancelButtonText: "让我再考虑一下…",
-                        closeOnConfirm: false,
-                        closeOnCancel: false
-                    },
-                    function (isConfirm) {
-                        if (isConfirm) {
-                            swal("删除成功！", "您已经永久删除了这条信息。", "success");
-                        } else {
-                            swal("已取消", "您取消了删除操作！", "error");
-                        }
-                    });
-            });
+            //全局变量
+            let club;
+            //社团名字
+            console.log("显示社团信息")
+            $.ajax({
+                type: "POST",
+                // url: "http://localhost:8888/club/getClubByID/2",
+
+                url: "/club/getClubByRandom",
+                // dataType: "text",
+                dataType: "json",
+                async: false,
+
+                success: function (data) {
+                    club = data.data
+                    $("#clubName").append(data.data.clubName);
+                    $("#clunNum").append(data.data.clubNum);
+                    $("#clubType").append(data.data.clubInfo);
+                    console.log(data)
+                    return club;
+                },
+                error: function (data) {
+                    alert("AJAX请求出错" + data);
+                    console.log(data);
+                }
+            })
+
+            // 试着添加  成功
+            $("#clubID").append(club.clubID);
+
+            console.log("列出表格")
+            var Num_M=0;
+            var Num_w=0;
+            $.ajax({
+                type: "post",
+                // url:"http://localhost:8888/club/getStudentListByClubID/2",
+                url: "/club/getStudentListByRandom",
+                dataType: "json",
+                async: false,
+
+                success: function (data) {
+                    console.log(data.data)
+                    for (var list of data.data) {
+                        console.log(list.studentName)
+                        var str = "";
+                        str = "<tr><td>" + list.studentName + "</td><td>" + list.studentMajor +
+                            "</td><td>" + list.studentGrade + "</td><td>" + list.work + "</td>" +
+                            ' <td id="' + list.studentID +
+                            '"><a data-toggle="modal" href="/html/manage#modal-form"><i class="fa fa-plus text-navy fa-2x"></i></a><a><i class="demo4 fa fa-trash text-navy fa-2x "onclick="getid(' +
+                            list.studentID + ')"></i></a></td></tr>';
+                        //追加到table中
+                        $("#table_tbody").append(str);
+                        if(list.studentGrade="男"){Num_M++}else Num_w++
+                    }
+                    console.log("studentlist循环完毕")
+                    $("#clubGender").append(Num_M+":"+Num_w);
+
+                },
+                error: function (data) {
+                    alert("AJAX请求出错" + data);
+                    console.log(data);
+
+                }
+            })
         })
+    </script>
+
+    <script type="text/javascript">
+        function addperson(){
+            $.ajax({
+                type:"POST",
+                dataType:"text",
+                url:"/club/addClubMenber2",
+                data: $('#addform').serialize(),
+                success:function(data){
+                    alert("add成功");
+                    console.log(data);
+                    window.location.reload(true);
+                },
+                error:function(){
+                    alert("add执行出错")
+                }
+            })
+        }
+        
+    </script>
+
+    <script type="text/javascript">
+        function turnoff(obj) {
+            // 增删改查点击消失div
+            document.getElementById(obj).style.display = "none";
+        };
+
+        function relode() {
+            window.location.reload(true);
+        }
     </script>
 
 </body>

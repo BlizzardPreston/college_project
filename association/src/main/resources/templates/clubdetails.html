@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>社团管理 招新</title>
+    <title>社团管理 社团详情</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
@@ -24,7 +24,7 @@
             <div class="col-sm-12">
                 <div class="ibox ">
                     <div class="ibox-content text-center">
-                        <h3 class="m-b-xxs">社团招新</h3>
+                        <h3 class="m-b-xxs">社团详情</h3>
                     </div>
                 </div>
                 <div id="forlistDiv">
@@ -66,32 +66,27 @@
             console.log("显示所有评论")
             $.ajax({
                 type: "POST",
-                url: "/clubRecruit/getAllRecruit",
+                url: "/club/AllClubList",
                 dataType: "json",
                 async: false,
                 success: function (data) {
                     var list=data.data;
-                    publish = data.data;
                     var i = 1;
                     // $("#clubType").append(data.data.clubInfo);
                     for (var num=data.data.length;num>0;num--) {
                         str1 =
                             '<div class="social-feed-separated"><div class="social-avatar"><a href=""><img alt="image" src="/img/a8.jpg"></a></div><div class="social-feed-box"><div class="pull-right social-action dropdown"><button data-toggle="dropdown" class="dropdown-toggle btn-white"><i class="fa fa-angle-down"></i></button><ul class="dropdown-menu m-t-xs"><li><a href="#">设置</a></li></ul></div><div class="social-avatar">'
-                        title='<div class="social-avatar">' + '<a href="#" id="username' + i +
-                            '">'+list[num-1].title+'</a> <small class="text-muted">' 
-                            '</small></div>'
                         usermsg = '<div class="social-avatar">' + '<a href="#" id="username' + i +
-                            '">'+getName(list[num-1].studentID)+'</a> <small class="text-muted">' + list[num-1].datetime +
+                            '">'+list[num-1].clubName+'</a> <small class="text-muted">' + list[num-1].clubAdmin +
                             '</small></div>'
-                        text = ' <div class="social-body"><p>' + list[num-1].text + '</p>'
+                        text = ' <div class="social-body"><p>' + list[num-1].clubInfo + '</p>'
                         str2 =
                             '<div class="btn-group"><button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> 赞</button><button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> 评论</button><button class="btn btn-white btn-xs"><i class="fa fa-share"></i> 分享</button></div></div>'
-                        $("#forlistDiv").append(str1 + title+usermsg + text + str2);
+                        $("#forlistDiv").append(str1 + usermsg + text + str2);
                         // $("#username" + i).append();
                         i = i + 1;
                     }
                     console.log(data)
-                    return publish;
                 },
                 error: function (data) {
                     alert("AJAX请求出错" + data);

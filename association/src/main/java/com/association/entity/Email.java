@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-
+import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,5 +26,5 @@ public class Email implements Serializable {
     //    图片路径
     private String imgURL;
     //    时间
-    private Date datetime;
+    private LocalDateTime datetime;
 }

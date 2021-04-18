@@ -4,6 +4,7 @@ import com.association.common.Result;
 import com.association.common.currentDate;
 import com.association.entity.Email;
 import com.association.service.EmailService;
+import com.association.shiro.ShiroUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,4 +34,18 @@ public class EmailController {
 //        System.out.println(emailService.getEmailListByStudentIDto(id));
         return Result.success(emailService.getEmailListByStudentIDto(id));
     }
+//    本地
+    @RequestMapping("WriteEmaillocal")
+    @ResponseBody
+    public Result WriteEmaillocal(@RequestParam long studentIDto,@RequestParam String title,@RequestParam String text){
+        Email email=new Email(emailService.lastNumOfEmailID(), ShiroUtils.getCurrentUser().getStudentID(),studentIDto,title,text,"",date.getCurrentDate());
+        return Result.success(emailService.WriteEmail(email));
+    }
+    @RequestMapping("showEmailByStudentIDlocal")
+    @ResponseBody
+    public Result showNoticlocal(){
+
+        return Result.success(emailService.getEmailListByStudentIDto(ShiroUtils.getCurrentUser().getStudentID()));
+    }
 }
+

@@ -6,21 +6,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
+
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("publish")
-public class Publish implements Serializable {
-    private int publishID;
-    private long studentID;
+@TableName("activity")
+public class Activity implements Serializable {
+    private int activityID;
+    private int clubID;
     private String title;
     private String text;
     private String imgURL;
-    //使用了java.sql.Date试试
+    private String address;
+    private String activityTime;
     private LocalDateTime datetime;
-    private int isSend;
-    private long mycomID;
+    private int state;
 }

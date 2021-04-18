@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @TableName("student")
 //对应数据库student表
-public class Student implements Serializable {
+public class  Student implements Serializable {
     //    学号
     private long studentID;
     //    学生名

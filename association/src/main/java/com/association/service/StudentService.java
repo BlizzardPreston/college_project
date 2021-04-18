@@ -2,6 +2,7 @@ package com.association.service;
 
 import com.association.Dao.ClubDao;
 import com.association.Dao.StudentDao;
+import com.association.Dao.UserDao;
 import com.association.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ public class StudentService {
     private StudentDao studentDao;
     @Autowired
     private ClubDao clubDao;
+    @Autowired
+    private UserDao userDao;
 
     public String getStudentNameById(long id){
         System.out.println("StudentService------->>>getStudentName");
@@ -53,5 +56,5 @@ public class StudentService {
     public Student getStudentById(long id){
         return studentDao.getStudentById(id);
     }
-
+    public boolean updateUserClubID(long studentID,int clubID){return userDao.updataClubID(clubID,studentID);}
 }

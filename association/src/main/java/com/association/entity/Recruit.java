@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-
+import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,7 +24,7 @@ public class Recruit implements Serializable {
 //    图片路径
     private String imgURL;
 //    发布时间
-    private Date datetime;
+    private LocalDateTime datetime;
 //    是否已发送
     private int isSend;
 //    评论对应id

@@ -6,6 +6,7 @@ import com.association.entity.Notice;
 import com.association.entity.Recruit;
 import com.association.service.NoticeService;
 import com.association.service.StudentService;
+import com.association.shiro.ShiroUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,6 +32,13 @@ public class NoticeController {
         noticeService.WriteNotice(notice);
         return Result.success("添加recruit成功！");
     }
+    @RequestMapping("WriteNoticelocal")
+    @ResponseBody
+    public Result WriteRecruitlocal(@RequestParam String title, @RequestParam String text){
+        Notice notice=new Notice(noticeService.lastNumOfNoticeID(),studentService.getClubIDByStudentID(ShiroUtils.getCurrentUser().getStudentID()),studentService.getStudentNameById(ShiroUtils.getCurrentUser().getStudentID()),title,text,"还没做这块",1,date.getCurrentDate());
+        noticeService.WriteNotice(notice);
+        return Result.success("添加recruit成功！");
+    }
     @RequestMapping("showNoticByclubID")
     @ResponseBody
     public Result showNotic(){
@@ -38,4 +46,11 @@ public class NoticeController {
 //        System.out.println(noticeService.getNoticListByClubID(clubID));
         return Result.success(noticeService.getNoticListByClubID(clubID));
     }
+//    本地
+@RequestMapping("showNoticByclubIDlocal")
+@ResponseBody
+public Result showNoticlocal(){
+    return Result.success(noticeService.getNoticListByClubID(ShiroUtils.getCurrentUser().getClubID()));
 }
+}
+

@@ -47,7 +47,7 @@
                 #{imgURL,jdbcType=VARCHAR},
             </if>
             <if test="datetime != null">
-                #{datetime,jdbcType=DATE},
+                #{datetime,jdbcType=TIMESTAMP},
             </if>
             <if test="isSend != null">
                 #{isSend,jdbcType=INTEGER},

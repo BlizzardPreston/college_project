@@ -76,14 +76,24 @@ public class clubController {
     public Result addClubMenber2(@RequestParam long studentID,@RequestParam(value = "studentName",required = false) String name ,@RequestParam(value = "work",required = false) String work,@RequestParam(value = "clubID",required = false) int cid) {
         System.out.println("addclubID:"+studentID+name+work+cid);
         studentService.addClubMenber(studentID, name, work, cid);
+        if(studentService.updateUserClubID(studentID,cid)){
+            return Result.success("添加用户成功！");
+        }else return Result.success("student添加成功，但此人无平台账号");
 
-        return Result.success("添加用户成功！");
+
     }
     @RequestMapping("AllClubList")
     @ResponseBody
     public Result AllClubList(){
        return Result.success(clubService.AllClubList());
     }
+    @RequestMapping("getClubNameByID")
+    @ResponseBody
+    public Result getClubNameByID(@RequestParam int clubID){
+        return Result.success(clubService.getClubByID(clubID));
+    }
+
+
 
 
 

@@ -4,6 +4,7 @@ import com.association.common.Result;
 import com.association.common.currentDate;
 import com.association.entity.Recruit;
 import com.association.service.RecruitService;
+import com.association.shiro.ShiroUtils;
 import com.baomidou.mybatisplus.extension.api.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,14 @@ public class clubRecruitController {
     @ResponseBody
     public Result WriteRecruit(@RequestParam String title,@RequestParam String text,@RequestParam long studentID){
         Recruit recruit=new Recruit(recruitService.lastNumOfRecruit(),studentID,title,text,"抹油图片",date.getCurrentDate(),1,0);
+        recruitService.isWriteRecruit(recruit);
+        return Result.success("添加recruit成功！");
+    }
+//    使用shiro获得当前用户数据
+    @RequestMapping("WriteRecruitlocal")
+    @ResponseBody
+    public Result WriteRecruitlocal(@RequestParam String title,@RequestParam String text){
+        Recruit recruit=new Recruit(recruitService.lastNumOfRecruit(),ShiroUtils.getCurrentUser().getStudentID(),title,text,"抹油图片",date.getCurrentDate(),1,0);
         recruitService.isWriteRecruit(recruit);
         return Result.success("添加recruit成功！");
     }

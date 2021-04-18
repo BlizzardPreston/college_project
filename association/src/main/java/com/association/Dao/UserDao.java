@@ -12,4 +12,5 @@ public interface UserDao {
     String chackUserAuthInfo(@Param("studentID") long id);
     User getUserByName(@Param("userName")String name);
     boolean addUser(User user);
+    boolean updataClubID(@Param("clubID") int cid,@Param("studentID")long sid);
 }

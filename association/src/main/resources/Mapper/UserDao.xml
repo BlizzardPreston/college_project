@@ -25,5 +25,7 @@
         insert into user(studentID,userName,userPassword,clubID,authID)
         value(#{studentID},#{userName},#{userPassword},#{clubID},#{authID})
     </insert>
-
+<update id="updataClubID">
+    update user set clubID=#{cid} where studentID=#{sid}
+</update>
 </mapper>

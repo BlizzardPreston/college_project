@@ -54,7 +54,7 @@
                 #{mycomID,jdbcType=BIGINT},
             </if>
             <if test="datetime != null">
-                #{datetime,jdbcType=DATE},
+                #{datetime,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>

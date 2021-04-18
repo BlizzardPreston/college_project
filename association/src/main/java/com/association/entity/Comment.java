@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -22,6 +23,6 @@ public class Comment implements Serializable {
 //    赞的数量
     private int likes;
 //    时间
-    private Date datetime;
+    private LocalDateTime datetime;
 
 }

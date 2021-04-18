@@ -6,6 +6,7 @@ import com.association.entity.Publish;
 import com.association.entity.Recruit;
 import com.association.service.PublishService;
 import com.association.service.StudentService;
+import com.association.shiro.ShiroUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,13 @@ public class PublishController {
         publishService.WritePublish(publish);
         return Result.success("添加publish成功！");
     }
+    @RequestMapping("WritePublishlocal")
+    @ResponseBody
+    public Result WritePublish(@RequestParam String title,@RequestParam String text){
+        Publish publish=new Publish(publishService.lastNumOfpublish(), ShiroUtils.getCurrentUser().getStudentID(),title,text,"抹油图片",date.getCurrentDate(),1,0);
+        publishService.WritePublish(publish);
+        return Result.success("添加publish成功！");
+    }
     @RequestMapping("getAllPublishByid")
     @ResponseBody
 //    public Result getAllPublishByid(@RequestParam long studentID){
@@ -39,6 +47,7 @@ public class PublishController {
         long studentID=17251106111L;
         return Result.success(publishService.AllPublishByStudentID(studentID));
     }
+//    前端接口
     @RequestMapping("getStudent")
     @ResponseBody
     public Result getStudent(){
@@ -46,6 +55,7 @@ public class PublishController {
 //        System.out.println(studentService.getStudentById(id));
         return Result.success(studentService.getStudentById(id));
     }
+
     @RequestMapping("AllPublish")
     @ResponseBody
     public Result getAllPublish(){
@@ -55,5 +65,20 @@ public class PublishController {
     @ResponseBody
     public Result getStudentByID(@RequestParam long id){
         return Result.success(studentService.getStudentById(id));
+    }
+    @RequestMapping("deleteByPublishId")
+    @ResponseBody
+    public Result deleteByPublishId(@RequestParam int publishID){return Result.success(publishService.deleteByPublishId(publishID));}
+//    本地接口
+    @RequestMapping("getStudentlocal")
+    @ResponseBody
+    public Result getStudentlocal(){
+
+    return Result.success(studentService.getStudentById(ShiroUtils.getCurrentUser().getStudentID()));
+}
+    @RequestMapping("getAllPublishByidlocal")
+    @ResponseBody
+    public Result getAllPublishByidlocal(){
+        return Result.success(publishService.AllPublishByStudentID(ShiroUtils.getCurrentUser().getStudentID()));
     }
 }

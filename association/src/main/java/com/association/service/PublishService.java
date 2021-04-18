@@ -24,4 +24,5 @@ public class PublishService {
     public List<Publish> AllPublish(){
         return publishDao.AllPublish();
     }
+    public boolean deleteByPublishId(int publishID){return publishDao.deleteByPublishId(publishID);}
 }

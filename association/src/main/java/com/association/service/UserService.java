@@ -18,8 +18,6 @@ public class UserService {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(id,pw);
         subject.login(usernamePasswordToken);
-
-
         return subject;
     }
     //通过shiro获取用户信息

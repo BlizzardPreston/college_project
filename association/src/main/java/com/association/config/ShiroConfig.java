@@ -27,9 +27,7 @@ public class ShiroConfig {
         filterMap.put("/user/index","perms[user:index]");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         shiroFilterFactoryBean.setLoginUrl("toshiroLogin");
-
         return shiroFilterFactoryBean;
-
     }
 //    2.DefaultWebSecurityManager
     @Bean
@@ -37,7 +35,6 @@ public class ShiroConfig {
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         defaultWebSecurityManager.setRealm(userRealm);
         return defaultWebSecurityManager;
-
     }
 
 //    1创建realm对象

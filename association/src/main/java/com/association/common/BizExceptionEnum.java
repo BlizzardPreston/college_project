@@ -8,7 +8,7 @@ package com.association.common;
 public enum BizExceptionEnum {
 
     SUCCESS(200,"成功"),
-    FAIL(201,"失败"),
+    FAIL(400,"失败"),
     /* 参数验证失败
      */
     PARAM_VALID_FAIL(5001, "参数验证失败 [%s]"),
