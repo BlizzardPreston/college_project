@@ -5,6 +5,7 @@ import com.association.common.Result;
 import com.association.entity.Club;
 import com.association.service.ClubService;
 import com.association.service.StudentService;
+import com.association.shiro.ShiroUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -50,14 +51,11 @@ public class clubController {
     @RequestMapping(value = "deleteById",method = {RequestMethod.POST})
     @ResponseBody
     public Result deleteById(@RequestParam("id") long id){
-        System.out.println(id);
-        if(studentService.deleteClubByID(id)) {
+            int cid=studentService.getStudentById(id).getClubID();
+            studentService.deleteClubByID(id);
+            clubService.updataClubNum(cid,studentService.getStudentListByClubID(cid).size());
             System.out.println("执行成功，clubID置0");
-            return Result.success("成功拉！");
-        }else {
-            System.out.println("执行deleteById失败，请查询数据库确认结果");
-            return Result.success("失败");
-        }
+            return Result.success("成功删除！");
     }
     @RequestMapping("addClubMenber1")
     @ResponseBody
@@ -73,10 +71,16 @@ public class clubController {
     }
     @RequestMapping(value = "/addClubMenber2",method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
-    public Result addClubMenber2(@RequestParam long studentID,@RequestParam(value = "studentName",required = false) String name ,@RequestParam(value = "work",required = false) String work,@RequestParam(value = "clubID",required = false) int cid) {
+    public Result addClubMenber2(@RequestParam long studentID,@RequestParam(value = "studentName",required = false) String name ,@RequestParam(value = "work",required = false) String work,@RequestParam int authID,@RequestParam(value = "clubID",required = false) int cid) {
+        if(ShiroUtils.getCurrentUser().getAuthID()==3){
+            System.out.println("用户权限不足");
+            return Result.fail();
+        }
         System.out.println("addclubID:"+studentID+name+work+cid);
         studentService.addClubMenber(studentID, name, work, cid);
-        if(studentService.updateUserClubID(studentID,cid)){
+        System.out.println(clubService.updataClubNum(cid, studentService.getStudentListByClubID(cid).size()));
+        clubService.updataClubNum(cid,studentService.getStudentListByClubID(cid).size());
+        if(studentService.updateUserClubID(studentID,cid,authID)){
             return Result.success("添加用户成功！");
         }else return Result.success("student添加成功，但此人无平台账号");
 
@@ -92,9 +96,19 @@ public class clubController {
     public Result getClubNameByID(@RequestParam int clubID){
         return Result.success(clubService.getClubByID(clubID));
     }
-
-
-
+//通过shiro获得用户信息
+    @RequestMapping(value = "/getStudentListByShiro",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public Result getStudentListByShiro(){
+        System.out.println("Shiro studentlist--->>"+ ShiroUtils.getCurrentUser().getClubID());
+        return Result.success(clubService.getStudentListByClubID(ShiroUtils.getCurrentUser().getClubID()));
+    }
+    @RequestMapping(value = "/getClubByShiro",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public Result getClubByShiro(){
+        System.out.println("Shiro clubID--->>"+ShiroUtils.getCurrentUser().getClubID());
+        return Result.success(clubService.getClubByID(ShiroUtils.getCurrentUser().getClubID()));
+    }
 
 
     //随机生成测试

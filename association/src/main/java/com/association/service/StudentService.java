@@ -42,7 +42,10 @@ public class StudentService {
     }
 //    把学生从社团删除，相当于把学生表的clubID改为0
     public boolean deleteClubByID(long id){
-        return studentDao.updataStudentClubID(id,studentDao.getsStudentNameById(id),0);
+        if(studentDao.updataStudentClubID(id,studentDao.getsStudentNameById(id),0)){
+            return true;
+        }else return false;
+
     }
     public boolean addClubMenber(long id,String name ,String work,int cid){
         if(studentDao.addClubMenber(id,name,work,cid)){
@@ -56,5 +59,6 @@ public class StudentService {
     public Student getStudentById(long id){
         return studentDao.getStudentById(id);
     }
-    public boolean updateUserClubID(long studentID,int clubID){return userDao.updataClubID(clubID,studentID);}
+    public boolean updateUserClubID(long studentID,int clubID,int auth){return userDao.updataClubID(clubID,studentID,auth);}
+    public List<Student> getStudentListByClubID(int cid){return studentDao.getStudentListByClubID(cid);}
 }

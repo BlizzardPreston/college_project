@@ -40,9 +40,13 @@ public class clubRecruitController {
     @RequestMapping("WriteRecruitlocal")
     @ResponseBody
     public Result WriteRecruitlocal(@RequestParam String title,@RequestParam String text){
-        Recruit recruit=new Recruit(recruitService.lastNumOfRecruit(),ShiroUtils.getCurrentUser().getStudentID(),title,text,"抹油图片",date.getCurrentDate(),1,0);
-        recruitService.isWriteRecruit(recruit);
-        return Result.success("添加recruit成功！");
+        if (ShiroUtils.getCurrentUser().getAuthID()==1||ShiroUtils.getCurrentUser().getAuthID()==0) {
+            Recruit recruit = new Recruit(recruitService.lastNumOfRecruit(), ShiroUtils.getCurrentUser().getStudentID(), title, text, "抹油图片", date.getCurrentDate(), 1, 0);
+            recruitService.isWriteRecruit(recruit);
+            return Result.success("添加recruit成功！");
+        }else {
+            System.out.println("执行recruit失败..");
+            return Result.fail("执行recruit失败..");}
     }
     @RequestMapping("nextNumber")
     @ResponseBody

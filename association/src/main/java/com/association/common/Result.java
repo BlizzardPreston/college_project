@@ -64,6 +64,9 @@ public class Result<T> implements Serializable {
         return success(BizExceptionEnum.SUCCESS.getMsg(), null);
     }
 
+    public static <T> Result<T> fail(String message) {
+        return new Result<>(BizExceptionEnum.FAIL.getCode(), message);
+    }
     public static <T> Result<T> fail(String message, T data) {
         return new Result<>(BizExceptionEnum.FAIL.getCode(), message, data);
     }

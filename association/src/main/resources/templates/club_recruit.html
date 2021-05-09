@@ -131,7 +131,7 @@
                                 <label class="col-sm-2 control-label">添加图片:</label>
 
                                 <div class="col-sm-10">
-                                    <button class="btn btn-sm btn-primary">上传图片</button>
+                                    <button class="btn btn-sm btn-primary" onclick="uplodeIMG()">上传图片</button>
                                 </div>
                             </div>
 
@@ -202,9 +202,16 @@
                 url:"/clubRecruit/WriteRecruitlocal",
                 data: $('#recruitform').serialize(),
                 success:function(data){
-                    alert("发送成功！");
+
                     console.log(data);
-                    window.location.reload(true);
+                    let code=JSON.parse(data).code;
+                    console.log(code);
+                   if(code==200){
+                       alert("发送成功！");
+                       window.location.reload(true);
+                   }else if(code==400){
+                       alert("发布招新权限不足")
+                   }
                 },
                 error:function(){
                     alert("up recruit执行出错")
@@ -218,14 +225,23 @@
                 url:"/notice/WriteNoticelocal",
                 data: $('#recruitform').serialize(),
                 success:function(data){
-                    alert("发送成功！");
-                    console.log(data);
-                    window.location.reload(true);
+                    let code=JSON.parse(data).code;
+                    console.log(code);
+                    if(code==200){
+                        alert("发送成功！");
+                        console.log(data);
+                        window.location.reload(true);
+                    }
+                    else if(code==400){alert("发布公告权限不足")}
+
                 },
                 error:function(){
                     alert("up notice执行出错")
                 }
             })
+        }
+        function uplodeIMG(){
+           alert("敬请期待！")
         }
         
     </script>

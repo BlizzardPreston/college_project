@@ -145,7 +145,7 @@
                                 <label class="col-sm-2 control-label">添加图片:</label>
 
                                 <div class="col-sm-10">
-                                    <button class="btn btn-sm btn-primary">上传图片</button>
+                                    <button class="btn btn-sm btn-primary" onclick="uplodeIMG()">上传图片</button>
                                 </div>
                             </div>
 
@@ -209,7 +209,7 @@
             $.ajax({
                 type:"POST",
                 dataType:"text",
-                url:"/activity/WriteActivity",
+                url:"/activity/WriteActivitylocal",
                 data: $('#activityform').serialize(),
                 success:function(data){
                     alert("发送成功！");
@@ -221,7 +221,9 @@
                 }
             })
         }
-        
+        function uplodeIMG(){
+            alert("敬请期待！")
+        }
     </script>
 
 </body>

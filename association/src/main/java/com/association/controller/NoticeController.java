@@ -35,9 +35,13 @@ public class NoticeController {
     @RequestMapping("WriteNoticelocal")
     @ResponseBody
     public Result WriteRecruitlocal(@RequestParam String title, @RequestParam String text){
-        Notice notice=new Notice(noticeService.lastNumOfNoticeID(),studentService.getClubIDByStudentID(ShiroUtils.getCurrentUser().getStudentID()),studentService.getStudentNameById(ShiroUtils.getCurrentUser().getStudentID()),title,text,"还没做这块",1,date.getCurrentDate());
-        noticeService.WriteNotice(notice);
-        return Result.success("添加recruit成功！");
+       if (ShiroUtils.getCurrentUser().getAuthID()==1||ShiroUtils.getCurrentUser().getAuthID()==0){
+           Notice notice=new Notice(noticeService.lastNumOfNoticeID(),studentService.getClubIDByStudentID(ShiroUtils.getCurrentUser().getStudentID()),studentService.getStudentNameById(ShiroUtils.getCurrentUser().getStudentID()),title,text,"还没做这块",1,date.getCurrentDate());
+           noticeService.WriteNotice(notice);
+           return Result.success("添加Notic成功！");
+       }else{
+           System.out.println("执行Notic失败..");
+           return Result.fail();}
     }
     @RequestMapping("showNoticByclubID")
     @ResponseBody

@@ -82,7 +82,7 @@
                         <div class="col-md-2">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
-                                    <span class="label label-success pull-right">月</span>
+                                    <span class="label label-success pull-right">个</span>
                                     <h5>社团人数</h5>
                                 </div>
                                 <div class="ibox-content">
@@ -161,23 +161,23 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="table_tbody">
-                                                <tr>
-                                                    <td>name1</td>
-                                                    <!-- <td><span class="pie">0.52/1.561</span></td> -->
-                                                    <td>计实</td>
-                                                    <!-- <td>20%</td> -->
-                                                    <td>2017级</td>
-                                                    <td>团长</td>
-                                                    <td>
-                                                        <a data-toggle="modal" href="/html/manage#modal-form"><i
-                                                                class="fa fa-plus text-navy fa-2x"></i></a>
-                                                        <!-- <a data-toggle="modal" href="manage.html#updata-form"><i
-                                                                class="fa fa-check text-navy fa-2x"></i></a> -->
-                                                        <a><i class="demo4 fa fa-trash text-navy fa-2x"></i></a>
-                                                        <a><i class="fa fa-user text-navy fa-2x"
-                                                                onclick="getid(123456)"></i></a>
-                                                    </td>
-                                                </tr>
+<!--                                                <tr>-->
+<!--                                                    <td>name1</td>-->
+<!--                                                    &lt;!&ndash; <td><span class="pie">0.52/1.561</span></td> &ndash;&gt;-->
+<!--                                                    <td>计实</td>-->
+<!--                                                    &lt;!&ndash; <td>20%</td> &ndash;&gt;-->
+<!--                                                    <td>2017级</td>-->
+<!--                                                    <td>团长</td>-->
+<!--                                                    <td>-->
+<!--                                                        <a data-toggle="modal" href="/html/manage#modal-form"><i-->
+<!--                                                                class="fa fa-plus text-navy fa-2x"></i></a>-->
+<!--                                                        &lt;!&ndash; <a data-toggle="modal" href="manage.html#updata-form"><i-->
+<!--                                                                class="fa fa-check text-navy fa-2x"></i></a> &ndash;&gt;-->
+<!--                                                        <a><i class="demo4 fa fa-trash text-navy fa-2x"></i></a>-->
+<!--                                                        <a><i class="fa fa-user text-navy fa-2x"-->
+<!--                                                                onclick="getid(123456)"></i></a>-->
+<!--                                                    </td>-->
+<!--                                                </tr>-->
 
                                             </tbody>
                                         </table>
@@ -242,6 +242,10 @@
                                     <label>职位：</label>
                                     <input type="text" placeholder="请输入职位" class="form-control">
                                 </div>
+                                <div class="form-group">
+                                    <label>权限：</label>
+                                    <input type="text" placeholder="请输入权限" class="form-control">
+                                </div>
                                 <!-- <div class="form-group">
                                     <label>密码：</label>
                                     <input type="password" placeholder="请输入密码" class="form-control">
@@ -289,6 +293,11 @@
                                     <label>职位：</label>
                                     <input type="text" th:name="work" id="work" name="work" placeholder="请输入职位"
                                         class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>权限：</label>
+                                    <input type="text" th:name="authID" id="authID" name="authID" placeholder="请输入权限码"
+                                           class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>社团代码</label>
@@ -428,7 +437,7 @@
                 type: "POST",
                 // url: "http://localhost:8888/club/getClubByID/2",
 
-                url: "/club/getClubByRandom",
+                url: "/club/getClubByShiro",
                 // dataType: "text",
                 dataType: "json",
                 async: false,
@@ -456,7 +465,7 @@
             $.ajax({
                 type: "post",
                 // url:"http://localhost:8888/club/getStudentListByClubID/2",
-                url: "/club/getStudentListByRandom",
+                url: "/club/getStudentListByShiro",
                 dataType: "json",
                 async: false,
 
@@ -495,9 +504,12 @@
                 url:"/club/addClubMenber2",
                 data: $('#addform').serialize(),
                 success:function(data){
-                    alert("add成功");
-                    console.log(data);
-                    window.location.reload(true);
+                    let code=JSON.parse(data).code;
+                    if(code==200) {
+                        alert("add成功");
+                        console.log(data);
+                        window.location.reload(true);
+                    }else if(code==400){alert("add权限不足");}
                 },
                 error:function(){
                     alert("add执行出错")
