@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
@@ -20,7 +21,14 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisSessionDao extends AbstractSessionDAO {
 
-    @Autowired
+//    @Autowired
+//    by type
+//    @Qualifier("objectRedisTemplate")
+//    private RedisTemplate<String, Object> redisTemplate;
+
+
+    @Resource
+//    by name
     @Qualifier("objectRedisTemplate")
     private RedisTemplate<String, Object> redisTemplate;
 

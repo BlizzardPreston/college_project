@@ -22,11 +22,16 @@ import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+/**
+ * @Description:
+ * @Author: zhangfang
+ * @Date: 2019/10/25 14:09
+ */
 @Slf4j
 @Configuration
 public class CacheManagerConfiguration {
-
     @Bean("stringRedisTemplate")
+    @Primary
     @ConditionalOnBean(PrimaryRedisProperties.class)
     public StringRedisTemplate stringRedisTemplate(@Autowired @Qualifier("lettuceConnectionFactory") LettuceConnectionFactory lettuceConnectionFactory) {
 
@@ -36,6 +41,7 @@ public class CacheManagerConfiguration {
     }
 
     @Bean(name = "longRedisTemplate")
+    @Primary
     @ConditionalOnBean(PrimaryRedisProperties.class)
     public RedisTemplate<String, Long> counterRedisTemplate(@Autowired @Qualifier("lettuceConnectionFactory") LettuceConnectionFactory lettuceConnectionFactory) {
         RedisTemplate<String, Long> template = new RedisTemplate<>();
@@ -47,17 +53,8 @@ public class CacheManagerConfiguration {
         return template;
     }
 
-    @Bean("lettuceConnectionFactory")
-    @ConditionalOnBean(PrimaryRedisProperties.class)
-    public LettuceConnectionFactory lettuceConnectionFactory(@Autowired @Qualifier("primaryRedisProperties") PrimaryRedisProperties primaryRedisProperties) {
-
-        if (log.isDebugEnabled()) {
-            log.debug("redis properties: {}", primaryRedisProperties);
-        }
-        return RedisManagerFactory.initFactory(primaryRedisProperties);
-    }
-
     @Bean(name = "objectRedisTemplate")
+    @Primary
     @ConditionalOnBean(PrimaryRedisProperties.class)
     public RedisTemplate<String, Object> objectRedisTemplate(@Autowired @Qualifier("lettuceConnectionFactory") LettuceConnectionFactory lettuceConnectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
@@ -67,16 +64,19 @@ public class CacheManagerConfiguration {
         return template;
     }
 
-    @Bean(name = "cacheManager")
+    @Bean(name = "objectRedisTemplate2")
+    @Primary
     @ConditionalOnBean(PrimaryRedisProperties.class)
-    public CacheManager cacheManager(@Autowired @Qualifier("stringRedisTemplate") StringRedisTemplate stringRedisTemplate, @Autowired @Qualifier("primaryRedisProperties") PrimaryRedisProperties primaryRedisProperties) {
-
-        CacheManager cacheManager = new RedisManager();
-        cacheManager.init(stringRedisTemplate, primaryRedisProperties);
-        return cacheManager;
+    public RedisTemplate objectRedisTemplate2(@Autowired @Qualifier("lettuceConnectionFactory") LettuceConnectionFactory lettuceConnectionFactory) {
+        RedisTemplate template = new RedisTemplate();
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setConnectionFactory(lettuceConnectionFactory);
+        return template;
     }
 
     @Bean
+    @Primary
     @ConditionalOnBean(PrimaryRedisProperties.class)
     public RedisTemplate<String, Object> redisTemplate(@Autowired @Qualifier("lettuceConnectionFactory") LettuceConnectionFactory lettuceConnectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
@@ -95,5 +95,27 @@ public class CacheManagerConfiguration {
         template.setValueSerializer(jackson2JsonRedisSerializer); // value的序列化类型
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
         return template;
+    }
+
+    @Bean(name = "cacheManager")
+    @Primary
+    @ConditionalOnBean(PrimaryRedisProperties.class)
+    public CacheManager cacheManager(@Autowired @Qualifier("stringRedisTemplate") StringRedisTemplate stringRedisTemplate, @Autowired @Qualifier("primaryRedisProperties") PrimaryRedisProperties primaryRedisProperties) {
+
+        CacheManager cacheManager = new RedisManager();
+        cacheManager.init(stringRedisTemplate, primaryRedisProperties);
+        return cacheManager;
+    }
+
+    @Bean("lettuceConnectionFactory")
+    @Primary
+    @ConditionalOnBean(PrimaryRedisProperties.class)
+//    @ConditionalOnBean(name = "PrimaryRedisProperties")
+    public LettuceConnectionFactory lettuceConnectionFactory(@Autowired @Qualifier("primaryRedisProperties") PrimaryRedisProperties primaryRedisProperties) {
+
+        if (log.isDebugEnabled()) {
+            log.debug("redis properties: {}", primaryRedisProperties);
+        }
+        return RedisManagerFactory.initFactory(primaryRedisProperties);
     }
 }

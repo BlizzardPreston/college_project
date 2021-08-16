@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class studentControllerTest {
     @Autowired
     private StudentService studentService;
+
     @RequestMapping("getnamebyid/{id}")
     @ResponseBody
     public String getStudentNameById(@PathVariable("id") long id){
