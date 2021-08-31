@@ -65,7 +65,7 @@ spring:
 
   datasource:
     username: root
-    password: jianzi456123
+    password: X8OLRZPpFBTSQsYhIlUHFDVTf2AIP1ngHu75nV/Jt84SutJGlfzFhZcTadnURxrQCp8LWYxl3jodMk16Zx61CA==
     #?serverTimezone=UTC解决时区的报错
     url: jdbc:mysql://8.135.112.184:3306/College?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -93,6 +93,13 @@ spring:
       test-on-return: false
       # 检测连接是否有效
       validation-query: select 1
+
+#      数据库密码加密
+      filter:
+        config:
+          enabled: true
+      connect-properties: {config.decrypt: true,config.decrypt.key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAM87dCJJFb9nN5SfyG1obzaD5iAtAOYiGpBAA0afgmnPg0KHIEPAhLIkyY7BCeXfGrdkYwycF8yM8RikK8ijrfUCAwEAAQ==}
+
 
 
 

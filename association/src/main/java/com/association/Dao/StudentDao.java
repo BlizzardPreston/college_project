@@ -1,6 +1,6 @@
 package com.association.Dao;
 
-
+import com.association.common.Page;
 import com.association.entity.Student;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -11,7 +11,7 @@ import java.util.List;
 public interface StudentDao {
     Student getStudentByid(@Param("studentID") long id);
     //    查询所有学生信息
-    List<Student> getAllStudent();
+    List<Student> getAllStudent(@Param("page") Page page);
 
     Student getStudentById(long id);
 

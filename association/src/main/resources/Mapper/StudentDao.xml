@@ -2,44 +2,80 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.association.Dao.StudentDao">
-    <select id="getStudentByid"  parameterType="java.lang.Long" resultType="com.association.entity.Student">
-        select * from student where studentID=#{id}
+    <resultMap id="BaseResultMap" type="com.association.entity.Student">
+        <id column="studentID" jdbcType="BIGINT" property="studentID"/>
+        <result column="studentName" jdbcType="VARCHAR" property="studentName"/>
+        <result column="studentMajor" jdbcType="VARCHAR" property="studentMajor"/>
+        <result column="studentGrade" jdbcType="INTEGER" property="studentGrade"/>
+        <result column="studentGender" jdbcType="VARCHAR" property="studentGender"/>
+        <result column="clubID" jdbcType="INTEGER" property="clubID"/>
+        <result column="work" jdbcType="VARCHAR" property="work"/>
+    </resultMap>
+    <select id="getStudentByid" parameterType="java.lang.Long" resultType="com.association.entity.Student">
+        select *
+        from student
+        where studentID = #{id}
     </select>
-    <select id="getAllStudent" resultType="com.association.entity.Student">
-        select * from student;
+    <select id="getAllStudent" resultMap="BaseResultMap">
+        select *
+        from student
     </select>
-    <select id="getStudentById" resultType="com.association.entity.Student"  parameterType="java.lang.Long">
-        select * from student where studentID=#{id};
+    <select id="getStudentById" resultType="com.association.entity.Student" parameterType="java.lang.Long">
+        select *
+        from student
+        where studentID = #{id};
     </select>
     <select id="getStudentByName" resultType="com.association.entity.Student" parameterType="String">
-        select * from student where studentName=#{name};
+        select *
+        from student
+        where studentName = #{name};
     </select>
     <select id="getStudentByGrade" resultType="com.association.entity.Student" parameterType="int">
-        select * from student where studentGrade=#{grade};
+        select *
+        from student
+        where studentGrade = #{grade};
     </select>
     <select id="getsStudentNameById" resultType="String" parameterType="long">
-        select studentName from student where studentID=#{id};
+        select studentName
+        from student
+        where studentID = #{id};
     </select>
     <select id="is2017" resultType="boolean">
-        select * from student where studentID=#{id} and studentGrade=2017
+        select *
+        from student
+        where studentID = #{id}
+          and studentGrade = 2017
     </select>
     <insert id="addStudent" parameterType="com.association.entity.Student">
-        insert into student(studentID,studentName,studentMajor,studentGrade)
-        value (#{studentID},#{studentName},#{studentMajor},#{studentGrade})
+        insert into student(studentID, studentName, studentMajor, studentGrade)
+            value (#{studentID},#{studentName},#{studentMajor},#{studentGrade})
     </insert>
     <delete id="deleteById" parameterType="java.lang.Long">
-        delete from student where studentID=#{id}
+        delete
+        from student
+        where studentID = #{id}
     </delete>
-    <select id="getStudentListByClubID"  resultType="com.association.entity.Student">
-        select * from student where clubID=#{id}
+    <select id="getStudentListByClubID" resultType="com.association.entity.Student">
+        select *
+        from student
+        where clubID = #{id}
     </select>
     <update id="updataStudentClubID">
-        update student set clubID=#{cid} where studentName=#{name} and studentID=#{id}
+        update student
+        set clubID=#{cid}
+        where studentName = #{name}
+          and studentID = #{id}
     </update>
     <update id="addClubMenber">
-        update student set clubID=#{cid},work=#{work} where studentName=#{name} and studentID=#{id}
+        update student
+        set clubID=#{cid},
+            work=#{work}
+        where studentName = #{name}
+          and studentID = #{id}
     </update>
     <select id="getClubIDByStudentID" resultType="java.lang.Integer">
-        select clubID from student where studentID=#{sid}
+        select clubID
+        from student
+        where studentID = #{sid}
     </select>
 </mapper>

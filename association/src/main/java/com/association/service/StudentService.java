@@ -3,6 +3,7 @@ package com.association.service;
 import com.association.Dao.ClubDao;
 import com.association.Dao.StudentDao;
 import com.association.Dao.UserDao;
+import com.association.common.Page;
 import com.association.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class StudentService {
         System.out.println("StudentService------->>>getStudentName");
         return studentDao.getStudentByid(id).getStudentName();
     }
-    public List<Student> getAllStudent(){
-        return studentDao.getAllStudent();
+    public List<Student> getAllStudent(Page page){
+        return studentDao.getAllStudent(page);
     }
     public boolean addStudent(Student student){
     if (studentDao.addStudent(student)){
