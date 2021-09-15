@@ -1,4 +1,5 @@
-
+server:
+  port: 8888
 spring:
   thymeleaf:
     cache: false
@@ -22,27 +23,27 @@ spring:
   redis:
     # Redis数据库索引(默认0)
     database: 0
-#      2核4g阿里云
-#    host: 8.135.112.184
-#    1核1g阿里云
-    host:  47.96.106.141
+    #      2核4g阿里云
+    #    host: 8.135.112.184
+    #    1核1g阿里云
+    host: 47.96.106.141
     port: 6379
-#    8.135.。。是6380端口
-#    port: 6380
-#    ms
+    #    8.135.。。是6380端口
+    #    port: 6380
+    #    ms
     timeout: 5000
     # Redis服务器连接密码（默认为空）
-#    password: 123456
-#    jedis:
-#      pool:
-#        # 连接池最大连接数（使用负值表示没有限制）
-#        max-active: 20
-#        # 连接池中的最大空闲连接
-#        max-idle: 10
-#        # 连接池中的最小空闲连接
-#        min-idle: 0
-#        # 连接池最大阻塞等待时间（使用负值表示没有限制）
-#        max-wait: -1
+    #    password: 123456
+    #    jedis:
+    #      pool:
+    # # 连接池最大连接数（使用负值表示没有限制）
+    #max-active: 20
+    ## 连接池中的最大空闲连接
+    #max-idle: 10
+    ## 连接池中的最小空闲连接
+    #min-idle: 0
+    ## 连接池最大阻塞等待时间（使用负值表示没有限制）
+    #max-wait: -1
 
     #Lettuce 是一个可伸缩线程安全的 Redis 客户端，多个线程可以共享同一个 RedisConnection，它利用优秀 netty NIO 框架来高效地管理多个连接
     lettuce:
@@ -57,7 +58,7 @@ spring:
         min-idle: 0
         # 连接池最大阻塞等待时间（使用负值表示没有限制）
         max-wait: -1
-#    connect-timeout: 50000
+  #    connect-timeout: 50000
 
 
 
@@ -94,16 +95,32 @@ spring:
       # 检测连接是否有效
       validation-query: select 1
 
-#      数据库密码加密
+      #数据库密码加密
       filter:
         config:
           enabled: true
-      connect-properties: {config.decrypt: true,config.decrypt.key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAM87dCJJFb9nN5SfyG1obzaD5iAtAOYiGpBAA0afgmnPg0KHIEPAhLIkyY7BCeXfGrdkYwycF8yM8RikK8ijrfUCAwEAAQ==}
+      connect-properties: { config.decrypt: true,config.decrypt.key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAM87dCJJFb9nN5SfyG1obzaD5iAtAOYiGpBAA0afgmnPg0KHIEPAhLIkyY7BCeXfGrdkYwycF8yM8RikK8ijrfUCAwEAAQ== }
 
+#xxl-job
+# 执行器"AppName"和地址信息配置：AppName执行器心跳注册分组依据；地址信息用于"调度中心请求并触发任务"和"执行器注册"。
+# 执行器默认端口为9999，执行器IP默认为空表示自动获取IP，多网卡时可手动设置指定IP，该IP不会绑定Host仅作为通讯实用。
+#单机部署多个执行器时，注意要配置不同执行器端口
 
-
-
-
+xxl:
+  job:
+    admin:
+      addresses: http://8.135.112.184:8100/xxl-job-admin
+    accessToken:
+    executor:
+#      appname: xxl-job-executor-sample
+      appname: xxl-job-executor-sample
+      ip:
+      port: 9999
+      # 执行器运行日志文件存储的磁盘位置，需要对该路径拥有读写权限
+      logpath:
+      # xxl-job log retention days：执行器Log文件定期清理功能，指定日志保存天数，日志文件过期自动删除。
+      #限制至少保持3天，否则功能不生效；
+      logretentiondays: 3
 
 
 
@@ -114,8 +131,7 @@ xinjianchen:
       expire: 3600000
 
 
-server:
-  port: 8888
+
 
 mybatis:
   mapper-locations: classpath*:Mapper/*.xml  #配置映射文件
